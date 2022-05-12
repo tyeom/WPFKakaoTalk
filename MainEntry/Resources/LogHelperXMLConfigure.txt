@@ -1,0 +1,25 @@
+<LogHelper>
+	<!-- File Log -->
+	<appender name="RollingFile" type="LogHelper.Appender.RollingFile">
+		<!-- 로그폴더 생성 위치 -->
+		<FolderPath value="Log" />
+		<!-- 로그폴더 생성 이름 -->
+		<FolderNameType value="{yyyy-MM-dd}" />
+		<!-- 오래된 로그폴더 삭제 일 -->
+		<DeleteDay value="30" />
+		<!-- 사용자 PC환경 로그 기록 여부 -->
+		<ComputerConfigure value="false" />
+		<!-- 로그파일 생성 이름 -->
+		<FileNameType value="WPFKakaoTalk.log" />
+		<!-- 로그 앞머리 -->
+		<Header value="[{HH:mm:ss.fff} - {M} - {L}]" />
+	</appender>
+
+	<!-- Udp Socket Send Log -->
+	<!--
+	<appender name="LogAppender" type="LogHelper.Appender.UdpAppender">
+		<HostAddress value="127.0.0.1" />
+		<LocalPort value="514" />
+	</appender>
+	-->
+</LogHelper>

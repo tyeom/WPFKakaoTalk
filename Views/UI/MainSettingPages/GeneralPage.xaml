@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Views.UI.MainSettingPages.GeneralPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.UI.MainSettingPages"
+             xmlns:extension="clr-namespace:Common.MarkupExtension;assembly=Common"
+             xmlns:enums="clr-namespace:Common.Enums;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="로그인"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   Margin="20, 20, 0, 0"
+                   Style="{StaticResource xNanumSquare_BFont}"/>
+        <Grid Grid.Row="1"
+              TextBlock.FontSize="12"
+              Margin="20, 20, 0, 30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="xAutoStart"
+                      Grid.Row="0"
+                      Content="윈도우 시작 시 자동실행"
+                      IsChecked="{Binding AutoStart}"
+                      Margin="0, 0, 0, 15"
+                      Style="{StaticResource sEllipseCheckBox}"/>
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
+                <CheckBox x:Name="xAutoLogin"
+                          Content="자동로그인"
+                          IsChecked="{Binding AutoLogin}"
+                          Margin="0, 0, 120, 0"
+                          Style="{StaticResource sEllipseCheckBox}"/>
+                <ComboBox ItemsSource="{extension:EnumBindingSource {x:Type enums:EAutoStartType}}"
+                          SelectedItem="{Binding AutoStartType}"
+                          VerticalContentAlignment="Center"
+                          Style="{StaticResource sComboBox_Basic}"/>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Grid.Row="2"
+                   Text="잠금모드"
+                   FontSize="15"
+                   Margin="20, 0, 0, 0"
+                   Style="{StaticResource xNanumSquare_BFont}"/>
+
+        <Grid Grid.Row="3"
+              TextBlock.FontSize="12"
+              Margin="20, 0, 0, 35">
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <CheckBox Content="PC 미사용 시 잠금모드 적용"
+                          IsChecked="{Binding UseLock}"
+                          Margin="0, 0, 29, 0"
+                          Style="{StaticResource sEllipseCheckBox}"/>
+                <ComboBox ItemsSource="{extension:EnumBindingSource {x:Type enums:ELockModeTime}}"
+                          SelectedItem="{Binding LockModeTime}"
+                          VerticalContentAlignment="Center"
+                          Style="{StaticResource sComboBox_Basic}"/>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Grid.Row="4"
+                   Text="PC 인증 해제"
+                   FontSize="15"
+                   Margin="20, 0, 0, 0"
+                   Style="{StaticResource xNanumSquare_BFont}"/>
+
+        <Grid Grid.Row="5"
+              TextBlock.FontSize="12"
+              Margin="20, 0, 0, 35">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="사용하는 PC가 변경 되었거나 도용이 의심 되는 경우 PC인증을 해&#10;제한 후 다시 인증을 받을 수 있습니다."
+                       Foreground="#FF999999"
+                       Margin="0, 0, 0, 10"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <Button Grid.Row="1"
+                    Content="PC 인증 해제"
+                    HorizontalAlignment="Left"
+                    Background="#FFFFFFFF"
+                    Width="100"
+                    Height="30"
+                    TextBlock.TextAlignment="Center"
+                    Style="{StaticResource BorderNormalButtonStyle}"/>
+        </Grid>
+
+        <TextBlock Grid.Row="6"
+                   Text="로그 파일 수집"
+                   FontSize="15"
+                   Margin="20, 0, 0, 0"
+                   Style="{StaticResource xNanumSquare_BFont}"/>
+
+        <Grid Grid.Row="7"
+              TextBlock.FontSize="12"
+              Margin="20, 0, 0, 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="카카오톡 사용 중 발생하는 로그 정보를 확인할 수 있습니다. 문제&#10; 발생시, 카카오톡 고객센터에 로그 파일과 함께 문의해주세요. 카&#10;카오로 보내시는 경우, 문제 해결 목적으로만 활용됩니다."
+                       Foreground="#FF999999"
+                       Margin="0, 0, 0, 10"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <Button Grid.Row="1"
+                    Content="수집하기"
+                    HorizontalAlignment="Left"
+                    Background="#FFFFFFFF"
+                    Width="100"
+                    Height="30"
+                    TextBlock.TextAlignment="Center"
+                    Style="{StaticResource BorderNormalButtonStyle}"/>
+        </Grid>
+    </Grid>
+</UserControl>

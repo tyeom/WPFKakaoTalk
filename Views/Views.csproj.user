@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="UI\ChattingListUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\FriendListUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\LoginSettingPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\LoginUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainSettingPages\AboutPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainSettingPages\GeneralPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainSettingPages\ProfilePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainSettingPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\PopWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UI\ChattingListUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\FriendListUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\LoginSettingPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\LoginUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainSettingPages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainSettingPages\GeneralPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainSettingPages\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainSettingPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\PopWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

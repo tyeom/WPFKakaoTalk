@@ -1,0 +1,213 @@
+﻿<Window x:Class="MainEntry.WPFKakaoTaskShell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Name="xShellWindow"
+        xmlns:local="clr-namespace:MainEntry"
+        xmlns:controls="clr-namespace:Common.Controls;assembly=Common"
+        mc:Ignorable="d"
+        MinWidth="430"
+        MinHeight="650">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="2"
+                      CaptionHeight="0"
+                      CornerRadius="5"
+                      GlassFrameThickness="5"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Style x:Key="sButton_Minimize" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="#FF4E4949"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="#00000000">
+                            <Border x:Name="icon_shadow" BorderBrush="{x:Null}" BorderThickness="0" Margin="0,6,0,0" Background="Black" Width="12" Height="3" SnapsToDevicePixels="True"/>
+                            <Border x:Name="icon" BorderBrush="{x:Null}" BorderThickness="0" Margin="0,9,0,0" Background="#FF4E4949" Width="12" Height="3" SnapsToDevicePixels="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="icon" Value="#FF948A8A"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                                <Setter Property="Background" TargetName="icon" Value="#FF606060"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="sToggleButton_Restore" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid Background="#00000000">
+                            <Grid x:Name="grid" Margin="0" Visibility="Visible">
+                                <Path x:Name="icon_shadow" Data="M1,4.8371952 L1,8.2980001 6,8.2980001 6,4.8371952 z M0,3.5977873 L7,3.5977873 7,9.2980001 0,9.2980001 z M1.9220893,1.3822247 L8.922089,1.3822247 8.922089,7.3594513 7.8387051,7.3594513 7.7970131,2.56259 1.9220893,2.5313401 z" Fill="Black" HorizontalAlignment="Stretch" Height="12" Margin="0,0,1,1" StrokeStartLineCap="Round" Stretch="Fill" StrokeEndLineCap="Round" Stroke="{x:Null}" StrokeThickness="0" VerticalAlignment="Stretch" Width="13" SnapsToDevicePixels="True"/>
+                                <Path x:Name="icon" Data="M1,4.8371952 L1,8.2980001 6,8.2980001 6,4.8371952 z M0,3.5977873 L7,3.5977873 7,9.2980001 0,9.2980001 z M1.9220893,1.3822247 L8.922089,1.3822247 8.922089,7.3594513 7.8387051,7.3594513 7.7970131,2.56259 1.9220893,2.5313401 z" Fill="White" HorizontalAlignment="Stretch" Height="12" Margin="0,1.5,1,0" StrokeStartLineCap="Round" Stretch="Fill" StrokeEndLineCap="Round" Stroke="{x:Null}" StrokeThickness="0" VerticalAlignment="Stretch" Width="13" SnapsToDevicePixels="True"/>
+                            </Grid>
+                            <Grid x:Name="isChecked" Margin="0" Visibility="Collapsed">
+                                <Border x:Name="icon_shadow1" BorderBrush="Black" BorderThickness="2,3,2,2" Margin="0,0,0,1" Width="12" Height="10" SnapsToDevicePixels="True"/>
+                                <Border x:Name="icon1" BorderBrush="#FF4E4949" BorderThickness="2,3,2,2" Margin="0,2,0,0" Width="12" Height="10" SnapsToDevicePixels="True"/>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="isChecked" Value="Visible"/>
+                                <Setter Property="Visibility" TargetName="grid" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Fill" TargetName="icon" Value="#FF948A8A"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                    <Condition Property="IsPressed" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BorderBrush" TargetName="icon1" Value="#FF948A8A"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                                <Setter Property="Fill" TargetName="icon" Value="#FF606060"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="sButton_Close" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="#02000000" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Path Fill="{x:Null}" Stretch="Fill" Stroke="Black" StrokeEndLineCap="Square" StrokeStartLineCap="Square" StrokeThickness="1.5" Data="M0.75,0.75 L7.25,7.25 M7.25,0.75 L0.75,7.25" x:Name="path_shadow" Margin="0,0,0,2" Width="10" Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SnapsToDevicePixels="True" />
+                            <Path Fill="{x:Null}" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" StrokeThickness="1.5" Data="M0.75,0.75 L7.25,7.25 M7.25,0.75 L0.75,7.25" x:Name="path" Width="10" Height="10" VerticalAlignment="Stretch" SnapsToDevicePixels="True" Stroke="#FF4E4949" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Stroke" TargetName="path" Value="#FF948A8A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Stroke" TargetName="path" Value="#FF948A8A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="xMainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--상단 타이틀바-->
+        <Grid x:Name="xTitleGrid"
+              Grid.Row="0"
+              MouseLeftButtonDown="TitleGrid_MouseLeftButtonDown"
+              MouseMove="TitleGrid_MouseMove">
+
+            <Border BorderThickness="0"
+                    Background="{Binding TitleBackground}"
+                    CornerRadius="0,0,0,0" />
+
+            <!--로그인 후 메인 UI에서 보여지는 좌측 사이드 메인 메뉴와 일치되도록 보여지기 위한 용도-->
+            <Border BorderThickness="0"
+                    Visibility="{Binding IsMaximizeShow, Converter={StaticResource BoolToVisConverter}}"
+                    Background="#FFECECED"
+                    HorizontalAlignment="Left"
+                    Width="65"/>
+            <!--로그인 후 메인 UI에서 보여지는 좌측 사이드 메인 메뉴와 일치되도록 보여지기 위한 용도 END-->
+
+            <StackPanel x:Name="xTitleStackPnl"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        d:LayoutOverrides="Height"
+                        VerticalAlignment="Center"
+                        Margin="0, 0, 10, 0">
+                <!--<StackPanel.Resources>
+                    <ContextMenu x:Key="LoginSettingContextMenu"
+                                 StaysOpen="True">
+                        <MenuItem Header="설정" Click="MenuItem_Click" Command="{Binding LoginSettingCommand}"/>
+                        <MenuItem x:Name="xProgramExit" Header="종료" Click="CloseButton_Click"/>
+                    </ContextMenu>
+                </StackPanel.Resources>-->
+                <controls:IconButton x:Name="xLoginSettingBtn"
+                                     Visibility="{Binding IsLoginSettingBtnShow, Converter={StaticResource BoolToVisConverter}}"
+                                     IconImage="/Views;component/Images/ico_cal_setting.png"
+                                     Click="xLoginSettingBtn_Click"
+                                     PreviewMouseRightButtonDown="xLoginSettingBtn_PreviewMouseRightButtonDown">
+                    <controls:IconButton.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="설정" Command="{Binding LoginSettingCommand}"/>
+                            <MenuItem x:Name="xProgramExit" Header="종료" Click="CloseButton_Click"/>
+                        </ContextMenu>
+                    </controls:IconButton.ContextMenu>
+                </controls:IconButton>
+                <Rectangle Width="2"
+                           Height="15"
+                           Visibility="{Binding IsLoginSettingBtnShow, Converter={StaticResource BoolToVisConverter}}"
+                           HorizontalAlignment="Left"
+                           Fill="#FFC5BFBF"
+                           Margin="5, 0, 10, 0"/>
+                <Button x:Name="xMinimizeToggleButton"
+                        IsTabStop="False"
+                        Width="15"
+                        Height="15"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0, 0, 5, 0"
+                        Click="MinimizeToggleButton_Click"
+                        Style="{DynamicResource sButton_Minimize}"/>
+                <ToggleButton x:Name="xMaximizeToggleButton"
+                              Visibility="{Binding IsMaximizeShow, Converter={StaticResource BoolToVisConverter}}"
+                              IsTabStop="False"
+                              Width="15"
+                              Height="15"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding ElementName=xShellWindow, Path=WindowState, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Normal}"
+                              Margin="0,0,5,0"
+                              Click="MaximizeToggleButton_Click"
+                              Style="{DynamicResource sToggleButton_Restore}"/>
+                <Button x:Name="xCloseButton"
+                    IsTabStop="False"
+                    Width="15"
+                    Height="15"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Click="CloseButton_Click"
+                    Margin="0, 0, 5, 0"
+                    Style="{DynamicResource sButton_Close}"/>
+            </StackPanel>
+        </Grid>
+        <!--상단 타이틀바 END-->
+
+        <Grid Grid.Row="1" MouseMove="Grid_MouseMove">
+            <ContentControl x:Name="xMainContent"
+                            Content="{Binding CurrentDataContext}"/>
+        </Grid>
+    </Grid>
+</Window>

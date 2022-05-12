@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dataContext="clr-namespace:ViewModels;assembly=ViewModels"
+                    xmlns:dataContextByMainSettings="clr-namespace:ViewModels.MainSettingViewModels;assembly=ViewModels"
+                    xmlns:views="clr-namespace:Views.UI;assembly=Views"
+                    xmlns:mainSettings="clr-namespace:Views.UI.MainSettingPages;assembly=Views">
+    <!--로그인 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:LoginViewModel}">
+        <views:LoginUI />
+    </DataTemplate>
+
+    <!--로그인 세팅 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:LoginSettingPopupViewModel}">
+        <views:LoginSettingPopup />
+    </DataTemplate>
+
+    <!--메인 세팅 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:MainSettingPopupViewModel}">
+        <views:MainSettingPopup />
+    </DataTemplate>
+
+    <!--메인 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:MainViewModel}">
+        <views:MainUI />
+    </DataTemplate>
+
+    <!--메인 세팅 > 일반 뷰-->
+    <DataTemplate DataType="{x:Type dataContextByMainSettings:GeneralViewModel}">
+        <mainSettings:GeneralPage />
+    </DataTemplate>
+
+    <!--메인 세팅 > 프로필 뷰-->
+    <DataTemplate DataType="{x:Type dataContextByMainSettings:ProfileViewModel}">
+        <mainSettings:ProfilePage />
+    </DataTemplate>
+
+    <!--메인 세팅 > 정보 뷰-->
+    <DataTemplate DataType="{x:Type dataContextByMainSettings:AboutViewModel}">
+        <mainSettings:AboutPage />
+    </DataTemplate>
+
+    <!--친구 리스트 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:FriendListViewModel}">
+        <views:FriendListUI />
+    </DataTemplate>
+
+    <!--채팅 리스트 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:ChattingListViewModel}">
+        <views:ChattingListUI />
+    </DataTemplate>
+</ResourceDictionary>

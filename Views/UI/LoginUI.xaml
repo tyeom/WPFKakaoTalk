@@ -1,0 +1,252 @@
+﻿<UserControl x:Class="Views.UI.LoginUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.UI"
+             mc:Ignorable="d" 
+             MinWidth="430"
+             MinHeight="650">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="sLoginButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="xBorder"
+                                BorderThickness="0"
+                                BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="xBorder"
+                                        Property="Background"
+                                        Value="#FF381E1F"/>
+                                <Setter TargetName="xBorder"
+                                        Property="TextBlock.Foreground"
+                                        Value="#FFFFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="xBorder"
+                                        Property="Background"
+                                        Value="#FF693C3E"/>
+                                <Setter TargetName="xBorder"
+                                        Property="TextBlock.Foreground"
+                                        Value="#FFFFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="xBorder"
+                                        Property="Background"
+                                        Value="#FFDAD9D9"/>
+                                <Setter TargetName="xBorder"
+                                        Property="TextBlock.Foreground"
+                                        Value="#FF929292"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="sAutoLoginCheckBoxStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid x:Name="markGrid">
+                                    <Path x:Name="xOptionMark"
+                                          Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z "
+                                          Fill="#FF212121"
+                                          Width="10"
+                                          Height="10"
+                                          Opacity="0"
+                                          Stretch="Uniform"
+                                          Margin="5"/>
+                                    <Rectangle x:Name="xIndeterminateMark"
+                                               Fill="#FF212121"
+                                               Margin="2"
+                                               Opacity="0"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="xContentPresenter"
+                                              Grid.Column="1"
+                                              Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="xOptionMark"
+                                        Property="Opacity"
+                                        Value="1"/>
+                                <Setter TargetName="xIndeterminateMark"
+                                        Property="Opacity"
+                                        Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="xOptionMark"
+                                        Property="Opacity"
+                                        Value="0"/>
+                                <Setter TargetName="xIndeterminateMark"
+                                        Property="Opacity"
+                                        Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#FFFFE800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Image Grid.Row="0"
+               Width="150"
+               Height="150"
+               Source="/Views;component/Images/kakaoTalk_Logo.png"
+               Margin="0, 50, 0, 0"/>
+
+        <Border Grid.Row="1"
+                Height="100"
+                BorderBrush="#FFBDAD14"
+                Background="#FFFFFFFF"
+                BorderThickness="1"
+                TextBlock.FontSize="15"
+                Margin="50, 50, 50, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="xUserID"
+                         Grid.Row="0"
+                         VerticalAlignment="Center"
+                         Foreground="#FF404040"
+                         Text="{Binding UserID, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="10, 0, 0, 0"
+                         Style="{StaticResource sPlatTextBox}"/>
+                <TextBlock x:Name="xUserIDHint"
+                           Grid.Row="0"
+                           VerticalAlignment="Center"
+                           Text="카카오계정(이메일 또는 전화번호)"
+                           Cursor="IBeam"
+                           Foreground="#FFA5A3A3"
+                           MouseLeftButtonUp="xUserIDHint_MouseLeftButtonUp"
+                           Margin="10, 0, 0, 0">
+                    <TextBlock.Style>
+                        <Style BasedOn="{StaticResource xNanumSquareFont}" TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding UserID, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StrLengthConverter}}"
+                                             Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Border Grid.Row="1"
+                        BorderBrush="#FFE4E2E2"
+                        BorderThickness="1"/>
+                <PasswordBox x:Name="xPassword"
+                             Grid.Row="2"
+                             VerticalAlignment="Center"
+                             Foreground="#FF404040"
+                             PasswordChanged="xPassword_PasswordChanged"
+                             Margin="10, 0, 0, 0"
+                             Style="{StaticResource sPlatPasswordBox}"/>
+                <TextBlock x:Name="xPasswordHint"
+                           Grid.Row="2"
+                           VerticalAlignment="Center"
+                           Text="비밀번호"
+                           Cursor="IBeam"
+                           Foreground="#FFA5A3A3"
+                           MouseLeftButtonUp="xPasswordHint_MouseLeftButtonUp"
+                           Margin="10, 0, 0, 0"
+                           Style="{StaticResource xNanumSquareFont}"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2"
+              TextBlock.FontSize="15"
+              Margin="0, 5, 0, 0">
+            <Button Content="로그인"
+                    Height="45"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=xPassword, Path=Tag}"
+                    Margin="50, 0, 50, 0"
+                    Style="{StaticResource sLoginButtonStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="3"
+              Margin="0, 5, 0, 0">
+            <CheckBox Grid.Column="0"
+                      Foreground="#FF484545"
+                      Content="자동로그인"
+                      VerticalContentAlignment="Center"
+                      Padding="5, 0, 0, 0"
+                      Margin="50, 0, 0, 0"
+                      Style="{StaticResource sAutoLoginCheckBoxStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="4"
+              VerticalAlignment="Bottom"
+              Margin="0, 0, 0, 50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="카카오계정 찾기"
+                       HorizontalAlignment="Right"
+                       Foreground="#FF4E4D4D"
+                       Margin="0, 0, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <Rectangle Grid.Column="1"
+                       Width="2"
+                       Height="15"
+                       HorizontalAlignment="Left"
+                       Fill="#FFC5BFBF"
+                       Margin="10, 0, 10, 0"/>
+            <TextBlock Grid.Column="2"
+                       VerticalAlignment="Center"
+                       Text="비밀번호 재설정"
+                       Foreground="#FF4E4D4D"
+                       Margin="0, 0, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Views.UI.MainSettingPages.ProfilePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.UI.MainSettingPages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="기본프로필 관리"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   Margin="20, 20, 0, 0"
+                   Style="{StaticResource xNanumSquare_BFont}"/>
+        <Grid Grid.Row="1"
+              Margin="20, 10, 0, 30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--프로필 사진 표시-->
+            <Border Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    Margin="0,0,0,0">
+                <Ellipse Width="70"
+                         Height="75"
+                         StrokeThickness="0"
+                         Margin="0,0,0,0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ProfileImg}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Border>
+            <!--프로필 사진 표시 END-->
+
+            <TextBlock Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding NickName}"
+                       VerticalAlignment="Center"
+                       FontSize="13"
+                       Margin="10, 0, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <TextBlock Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding StatusMsg}"
+                       VerticalAlignment="Top"
+                       FontSize="12"
+                       Foreground="#FF999999"
+                       Margin="10, -5, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <Button Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Content="편집"
+                    HorizontalAlignment="Left"
+                    Background="#FFFFFFFF"
+                    Width="70"
+                    Height="30"
+                    TextBlock.TextAlignment="Center"
+                    Margin="0, 0, 20, 0"
+                    Style="{StaticResource BorderNormalButtonStyle}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Margin="0, 0, 0, 15">
+            <TextBlock Grid.Row="2"
+                   Text="계정"
+                   FontSize="13"
+                   Margin="20, 0, 0, 0"
+                   Style="{StaticResource xNanumSquareFont}"/>
+            <TextBlock Grid.Row="2"
+                   Text="{Binding Email}"
+                   FontSize="13"
+                   Margin="40, 0, 0, 0"
+                   Style="{StaticResource xNanumSquareFont}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Margin="0, 0, 0, 15">
+            <TextBlock Grid.Row="2"
+                   Text="아이디"
+                   FontSize="13"
+                   Margin="20, 0, 0, 0"
+                   Style="{StaticResource xNanumSquareFont}"/>
+            <TextBlock Grid.Row="2"
+                   Text="{Binding Id}"
+                   FontSize="12"
+                   Margin="27, 0, 0, 0"
+                   Style="{StaticResource xNanumSquareFont}"/>
+        </StackPanel>
+
+        <CheckBox Grid.Row="4"
+                  Content="아이디 검색 허용"
+                  FontSize="12"
+                  IsChecked="{Binding AllowIDSearch}"
+                  Margin="20, 0, 0, 0"
+                  Style="{StaticResource sEllipseCheckBox}"/>
+
+    </Grid>
+</UserControl>

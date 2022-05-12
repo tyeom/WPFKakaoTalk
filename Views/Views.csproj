@@ -1,0 +1,249 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add_friend_ico.png" />
+    <None Remove="Images\add_friend_ico_on.png" />
+    <None Remove="Images\badge_mention.png" />
+    <None Remove="Images\birthday_img_placeholder.png" />
+    <None Remove="Images\btn_character_ben.png" />
+    <None Remove="Images\btn_character_tom.png" />
+    <None Remove="Images\btn_input_down.png" />
+    <None Remove="Images\btn_input_down_inactive.png" />
+    <None Remove="Images\btn_input_up.png" />
+    <None Remove="Images\btn_input_up_inactive.png" />
+    <None Remove="Images\btn_more.png" />
+    <None Remove="Images\btn_more_calendar.png" />
+    <None Remove="Images\btn_mycal.png" />
+    <None Remove="Images\btn_sendblocked.png" />
+    <None Remove="Images\cake.png" />
+    <None Remove="Images\calendarpenalty.png" />
+    <None Remove="Images\calendar_bg_day_down.png" />
+    <None Remove="Images\calendar_bg_day_hover.png" />
+    <None Remove="Images\calendar_bg_day_normal.png" />
+    <None Remove="Images\calendar_bg_hollyday_down.png" />
+    <None Remove="Images\calendar_bg_hollyday_hover.png" />
+    <None Remove="Images\calendar_bg_hollyday_normal.png" />
+    <None Remove="Images\calendar_bg_maybe.png" />
+    <None Remove="Images\calendar_bg_none_down.png" />
+    <None Remove="Images\calendar_bg_none_hover.png" />
+    <None Remove="Images\calendar_bg_today_down.png" />
+    <None Remove="Images\calendar_bg_today_hover.png" />
+    <None Remove="Images\calendar_bg_today_normal.png" />
+    <None Remove="Images\calendar_btn_close.png" />
+    <None Remove="Images\calendar_btn_delete_list.png" />
+    <None Remove="Images\calendar_home_arrow.png" />
+    <None Remove="Images\calendar_home_arrow_disable.png" />
+    <None Remove="Images\calendar_home_arrow_hover.png" />
+    <None Remove="Images\calendar_home_arrow_normal.png" />
+    <None Remove="Images\calendar_home_arrow_selected.png" />
+    <None Remove="Images\calendar_icon_accept.png" />
+    <None Remove="Images\calendar_icon_check_color.png" />
+    <None Remove="Images\calendar_icon_check_side.png" />
+    <None Remove="Images\calendar_icon_expand.png" />
+    <None Remove="Images\calendar_icon_expand_list.png" />
+    <None Remove="Images\calendar_icon_fold_list.png" />
+    <None Remove="Images\calendar_icon_left.png" />
+    <None Remove="Images\calendar_icon_menu.png" />
+    <None Remove="Images\calendar_icon_non.png" />
+    <None Remove="Images\calendar_icon_noti.png" />
+    <None Remove="Images\calendar_icon_reject.png" />
+    <None Remove="Images\calendar_icon_right.png" />
+    <None Remove="Images\calendar_icon_search.png" />
+    <None Remove="Images\calendar_icon_tag_chat.png" />
+    <None Remove="Images\calendar_icon_tag_friend.png" />
+    <None Remove="Images\calendar_mask_circle.png" />
+    <None Remove="Images\calendar_mask_circle_line.png" />
+    <None Remove="Images\calendar_side_bg_day.png" />
+    <None Remove="Images\calendar_side_bg_day_down.png" />
+    <None Remove="Images\calendar_side_bg_day_hover.png" />
+    <None Remove="Images\cal_select_down.png" />
+    <None Remove="Images\cal_select_hover.png" />
+    <None Remove="Images\cal_select_nor.png" />
+    <None Remove="Images\chatlist_icon_sendblocked.png" />
+    <None Remove="Images\chatroom_btn_time.png" />
+    <None Remove="Images\chatroom_btn_time_light.png" />
+    <None Remove="Images\chat_icon_facetalk_1.png" />
+    <None Remove="Images\chat_icon_facetalk_2.png" />
+    <None Remove="Images\chat_icon_talkbadge.png" />
+    <None Remove="Images\chat_icon_voicetalk_1.png" />
+    <None Remove="Images\chat_icon_voicetalk_2.png" />
+    <None Remove="Images\chat_Select_ico.png" />
+    <None Remove="Images\chat_UnSelect_ico.png" />
+    <None Remove="Images\common_icon_alert.png" />
+    <None Remove="Images\friend_ico_search.png" />
+    <None Remove="Images\friend_ico_search_on.png" />
+    <None Remove="Images\friend_Select_ico.png" />
+    <None Remove="Images\friend_UnSelect_ico.png" />
+    <None Remove="Images\icon_channel.png" />
+    <None Remove="Images\icon_channel_B85.png" />
+    <None Remove="Images\icon_character.png" />
+    <None Remove="Images\icon_invite.png" />
+    <None Remove="Images\icon_mic.png" />
+    <None Remove="Images\icon_mic_off.png" />
+    <None Remove="Images\icon_timechat_cover.png" />
+    <None Remove="Images\icon_timechat_search.png" />
+    <None Remove="Images\icon_vol.png" />
+    <None Remove="Images\icon_vol_off.png" />
+    <None Remove="Images\ico_addtalkch.png" />
+    <None Remove="Images\ico_badge.png" />
+    <None Remove="Images\ico_cal_setting.png" />
+    <None Remove="Images\img_erase_search.png" />
+    <None Remove="Images\input-arrow-closed%403x.png" />
+    <None Remove="Images\input-arrow-open%403x.png" />
+    <None Remove="Images\kakaoTalk_Logo.png" />
+    <None Remove="Images\moim_chatbubble_ico_arrow.png" />
+    <None Remove="Images\moim_chatbubble_ico_poll.png" />
+    <None Remove="Images\moim_chatbubble_ico_post.png" />
+    <None Remove="Images\more_icon_info_timechat.png" />
+    <None Remove="Images\profile_img_musicnoimg40.png" />
+    <None Remove="Images\searchbar_ico_search.png" />
+    <None Remove="Images\setting_Select_ico.png" />
+    <None Remove="Images\setting_UnSelect_ico.png" />
+    <None Remove="Images\tabmenu_btn_chats.png" />
+    <None Remove="Images\tabmenu_btn_friends.png" />
+    <None Remove="Images\tabmenu_btn_more.png" />
+    <None Remove="Images\titlebar_btn_close.png" />
+    <None Remove="Images\titlebar_btn_close_bl.png" />
+    <None Remove="Images\titlebar_btn_close_wh.png" />
+    <None Remove="Images\titlebar_btn_maximize_bl.png" />
+    <None Remove="Images\titlebar_btn_maximize_wh.png" />
+    <None Remove="Images\titlebar_btn_minimize_bl.png" />
+    <None Remove="Images\titlebar_btn_minimize_wh.png" />
+    <None Remove="Images\titlebar_btn_resize_bl.png" />
+    <None Remove="Images\titlebar_btn_resize_wh.png" />
+    <None Remove="Images\yellow_checkmark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add_friend_ico.png" />
+    <Resource Include="Images\add_friend_ico_on.png" />
+    <Resource Include="Images\chat_Select_ico.png" />
+    <Resource Include="Images\chat_UnSelect_ico.png" />
+    <Resource Include="Images\friend_ico_search.png" />
+    <Resource Include="Images\friend_ico_search_on.png" />
+    <Resource Include="Images\friend_Select_ico.png" />
+    <Resource Include="Images\friend_UnSelect_ico.png" />
+    <Resource Include="Images\ico_badge.png" />
+    <Resource Include="Images\input-arrow-closed@3x.png" />
+    <Resource Include="Images\input-arrow-open@3x.png" />
+    <Resource Include="Images\kakaoTalk_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\badge_mention.png" />
+    <Resource Include="Images\birthday_img_placeholder.png" />
+    <Resource Include="Images\btn_character_ben.png" />
+    <Resource Include="Images\btn_character_tom.png" />
+    <Resource Include="Images\btn_input_down.png" />
+    <Resource Include="Images\btn_input_down_inactive.png" />
+    <Resource Include="Images\btn_input_up.png" />
+    <Resource Include="Images\btn_input_up_inactive.png" />
+    <Resource Include="Images\btn_more.png" />
+    <Resource Include="Images\btn_more_calendar.png" />
+    <Resource Include="Images\btn_mycal.png" />
+    <Resource Include="Images\btn_sendblocked.png" />
+    <Resource Include="Images\cake.png" />
+    <Resource Include="Images\calendarpenalty.png" />
+    <Resource Include="Images\calendar_bg_day_down.png" />
+    <Resource Include="Images\calendar_bg_day_hover.png" />
+    <Resource Include="Images\calendar_bg_day_normal.png" />
+    <Resource Include="Images\calendar_bg_hollyday_down.png" />
+    <Resource Include="Images\calendar_bg_hollyday_hover.png" />
+    <Resource Include="Images\calendar_bg_hollyday_normal.png" />
+    <Resource Include="Images\calendar_bg_maybe.png" />
+    <Resource Include="Images\calendar_bg_none_down.png" />
+    <Resource Include="Images\calendar_bg_none_hover.png" />
+    <Resource Include="Images\calendar_bg_today_down.png" />
+    <Resource Include="Images\calendar_bg_today_hover.png" />
+    <Resource Include="Images\calendar_bg_today_normal.png" />
+    <Resource Include="Images\calendar_btn_close.png" />
+    <Resource Include="Images\calendar_btn_delete_list.png" />
+    <Resource Include="Images\calendar_home_arrow.png" />
+    <Resource Include="Images\calendar_home_arrow_disable.png" />
+    <Resource Include="Images\calendar_home_arrow_hover.png" />
+    <Resource Include="Images\calendar_home_arrow_normal.png" />
+    <Resource Include="Images\calendar_home_arrow_selected.png" />
+    <Resource Include="Images\calendar_icon_accept.png" />
+    <Resource Include="Images\calendar_icon_check_color.png" />
+    <Resource Include="Images\calendar_icon_check_side.png" />
+    <Resource Include="Images\calendar_icon_expand.png" />
+    <Resource Include="Images\calendar_icon_expand_list.png" />
+    <Resource Include="Images\calendar_icon_fold_list.png" />
+    <Resource Include="Images\calendar_icon_left.png" />
+    <Resource Include="Images\calendar_icon_menu.png" />
+    <Resource Include="Images\calendar_icon_non.png" />
+    <Resource Include="Images\calendar_icon_noti.png" />
+    <Resource Include="Images\calendar_icon_reject.png" />
+    <Resource Include="Images\calendar_icon_right.png" />
+    <Resource Include="Images\calendar_icon_search.png" />
+    <Resource Include="Images\calendar_icon_tag_chat.png" />
+    <Resource Include="Images\calendar_icon_tag_friend.png" />
+    <Resource Include="Images\calendar_mask_circle.png" />
+    <Resource Include="Images\calendar_mask_circle_line.png" />
+    <Resource Include="Images\calendar_side_bg_day.png" />
+    <Resource Include="Images\calendar_side_bg_day_down.png" />
+    <Resource Include="Images\calendar_side_bg_day_hover.png" />
+    <Resource Include="Images\cal_select_down.png" />
+    <Resource Include="Images\cal_select_hover.png" />
+    <Resource Include="Images\cal_select_nor.png" />
+    <Resource Include="Images\chatlist_icon_sendblocked.png" />
+    <Resource Include="Images\chatroom_btn_time.png" />
+    <Resource Include="Images\chatroom_btn_time_light.png" />
+    <Resource Include="Images\chat_icon_facetalk_1.png" />
+    <Resource Include="Images\chat_icon_facetalk_2.png" />
+    <Resource Include="Images\chat_icon_talkbadge.png" />
+    <Resource Include="Images\chat_icon_voicetalk_1.png" />
+    <Resource Include="Images\chat_icon_voicetalk_2.png" />
+    <Resource Include="Images\common_icon_alert.png" />
+    <Resource Include="Images\icon_channel.png" />
+    <Resource Include="Images\icon_channel_B85.png" />
+    <Resource Include="Images\icon_character.png" />
+    <Resource Include="Images\icon_invite.png" />
+    <Resource Include="Images\icon_mic.png" />
+    <Resource Include="Images\icon_mic_off.png" />
+    <Resource Include="Images\icon_timechat_cover.png" />
+    <Resource Include="Images\icon_timechat_search.png" />
+    <Resource Include="Images\icon_vol.png" />
+    <Resource Include="Images\icon_vol_off.png" />
+    <Resource Include="Images\ico_addtalkch.png" />
+    <Resource Include="Images\ico_cal_setting.png" />
+    <Resource Include="Images\img_erase_search.png" />
+    <Resource Include="Images\moim_chatbubble_ico_arrow.png" />
+    <Resource Include="Images\moim_chatbubble_ico_poll.png" />
+    <Resource Include="Images\moim_chatbubble_ico_post.png" />
+    <Resource Include="Images\more_icon_info_timechat.png" />
+    <Resource Include="Images\profile_img_musicnoimg40.png" />
+    <Resource Include="Images\searchbar_ico_search.png" />
+    <Resource Include="Images\setting_Select_ico.png" />
+    <Resource Include="Images\setting_UnSelect_ico.png" />
+    <Resource Include="Images\tabmenu_btn_chats.png" />
+    <Resource Include="Images\tabmenu_btn_friends.png" />
+    <Resource Include="Images\tabmenu_btn_more.png" />
+    <Resource Include="Images\titlebar_btn_close.png" />
+    <Resource Include="Images\titlebar_btn_close_bl.png" />
+    <Resource Include="Images\titlebar_btn_close_wh.png" />
+    <Resource Include="Images\titlebar_btn_maximize_bl.png" />
+    <Resource Include="Images\titlebar_btn_maximize_wh.png" />
+    <Resource Include="Images\titlebar_btn_minimize_bl.png" />
+    <Resource Include="Images\titlebar_btn_minimize_wh.png" />
+    <Resource Include="Images\titlebar_btn_resize_bl.png" />
+    <Resource Include="Images\titlebar_btn_resize_wh.png" />
+    <Resource Include="Images\yellow_checkmark.png" />
+  </ItemGroup>
+
+</Project>

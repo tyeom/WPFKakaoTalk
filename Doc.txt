@@ -1,0 +1,24 @@
+설명
+	WPF로 KakaoTalk PC버전 클론 프로젝트 입니다.
+	서버와 별도 통신 기능이 없는 순수 클라이언트 기능을 WPF로 구현한 프로젝트 입니다.
+	최대한 MVVM 아키텍처 패턴을 따르도록 설계 하였습니다.
+
+개발 환경 정보
+	- IDE : VS 2022
+	- Language : C# (WPF)
+	- Framework : .Net6 / Windows Only
+
+사용 라이브러리
+	* 로그 관련
+		- LogHelper / 자체 제작
+	* MVVM 관련
+		- Microsoft.Toolkit.Mvvm / ver : 7.1.2
+		- Microsoft.Xaml.Behaviors
+	* DependencyInjection 관련
+		- Microsoft.Extensions.DependencyInjection / ver : 6.0.0
+
+구현 기능
+	- 로그인 화면
+	- 친구 목록 화면
+	- 친구 검색
+	- 친구 추가
