@@ -3,10 +3,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Views"
+             xmlns:local="clr-namespace:Views.UI"
              xmlns:controls="clr-namespace:Common.Controls;assembly=Common"
+             x:Name="xFriendListUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ExpanderToggleButton"
+                         TargetType="{x:Type ToggleButton}">
+            <Border x:Name="Border"
+                    CornerRadius="2,0,0,0"
+                    BorderThickness="0,0,1,0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                               Storyboard.TargetName="CollapsedArrow">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                               Storyboard.TargetName="ExpandededArrow">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked" />
+                        <VisualState x:Name="Indeterminate" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Grid>
+                    <Path x:Name="CollapsedArrow"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Data="M 0 0 L 4 4 L 8 0 Z">
+                        <Path.Fill>
+                            <SolidColorBrush Color="#FFC4C4C4" />
+                        </Path.Fill>
+                        <Path.Style>
+                            <Style TargetType="Path">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                                        <LinearColorKeyFrame KeyTime="0"
+                                                                             Value="#FF979797"/>
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                                        <LinearColorKeyFrame KeyTime="0"
+                                                                             Value="#FFC4C4C4"/>
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                    <Path x:Name="ExpandededArrow"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Visibility="Collapsed"
+                          Data="M 0 4 L 4 0 L 8 4 Z">
+                        <Path.Fill>
+                            <SolidColorBrush Color="#FFC4C4C4" />
+                        </Path.Fill>
+
+                        <Path.Style>
+                            <Style TargetType="Path">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=IsMouseOver}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                                        <LinearColorKeyFrame KeyTime="0"
+                                                                             Value="#FF979797"/>
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                                        <LinearColorKeyFrame KeyTime="0"
+                                                                             Value="#FFC4C4C4"/>
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -48,17 +156,161 @@
                       Grid.Column="0"
                       Grid.ColumnSpan="2"
                       Grid.Row="1"
-                      Background="Red">
-            <controls:FrindListControl ItemsSource="{Binding FriendList}">
+                      HorizontalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalScrollBarVisibility="Visible"
+                      Margin="0, 10, 0, 0">
+            <controls:FrindListControl Grid.Column="0"
+                                       VerticalAlignment="Stretch"
+                                       ItemsSource="{Binding FriendListView}"
+                                       ProfileImg="{Binding MyProfile.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}"
+                                       MyName="{Binding MyProfile.Name}"
+                                       StatusMsg="{Binding MyProfile.UserProfile.Status}">
                 <controls:FrindListControl.ItemTemplate>
                     <DataTemplate>
                         <Border HorizontalAlignment="Stretch">
-                            <controls:FrindListItemControl ProfileImg="{Binding UserProfile.UserProfileImgBase64}"
-                                                       FriendName="qqq"
-                                                       FriendStatusMsg="{Binding UserProfile.Status}"/>
+                            <controls:FrindListItemControl Id="{Binding Id}"
+                                                           FriendInfoCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ProfileCommand}"
+                                                           FriendInfoCommandParameter="{Binding .}"
+                                                           FriendChatCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ChatCommand}"
+                                                           FriendChatCommandParameter="{Binding .}"/>
                         </Border>
                     </DataTemplate>
                 </controls:FrindListControl.ItemTemplate>
+                
+                <controls:FrindListControl.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Expander IsExpanded="True">
+                                                
+
+                                                <!--Expander 헤더 스타일-->
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="10, 0, 0, 0">
+                                                        <TextBlock Foreground="#FF999999"
+                                                                   FontSize="13"
+                                                                   VerticalAlignment="Bottom">
+                                                            <TextBlock.Style>
+                                                                <Style BasedOn="{StaticResource xNanumSquareFont}" TargetType="TextBlock">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Name}" Value="Friend">
+                                                                            <Setter Property="Text" Value="친구"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Name}" Value="UpdateFriend">
+                                                                            <Setter Property="Text" Value="업데이트한 친구"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Name}" Value="PlusFrind">
+                                                                            <Setter Property="Text" Value="플러스 친구"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Name}" Value="Channel">
+                                                                            <Setter Property="Text" Value="채널"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding ItemCount}"
+                                                                   Foreground="#FF999999"
+                                                                   FontSize="13"
+                                                                   Margin="8,0,0,0"
+                                                                   Style="{StaticResource xNanumSquareFont}"/>
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <!--Expander 헤더 스타일 END-->
+
+                                                <!--Expander 토글 스타일-->
+                                                <Expander.Style>
+                                                    <Style TargetType="{x:Type Expander}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Expander}">
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <!--그룹 Expander / Collapsed 상태에 따라 동적 Height-->
+                                                                            <RowDefinition x:Name="ContentRow"
+                                                                                           Height="0" />
+                                                                        </Grid.RowDefinitions>
+                                                                        <VisualStateManager.VisualStateGroups>
+                                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                                <VisualState x:Name="Normal" />
+                                                                                <VisualState x:Name="MouseOver" />
+                                                                                <VisualState x:Name="Disabled">
+                                                                                    <Storyboard>
+                                                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                                                      Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                                                            <EasingColorKeyFrame KeyTime="0"
+                                                                                                                 Value="{StaticResource DisabledControlDarkColor}" />
+                                                                                        </ColorAnimationUsingKeyFrames>
+                                                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                                                      Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledBorderLightColor}" />
+                                                                                        </ColorAnimationUsingKeyFrames>
+                                                                                    </Storyboard>
+                                                                                </VisualState>
+                                                                            </VisualStateGroup>
+                                                                        </VisualStateManager.VisualStateGroups>
+                                                                        <Border x:Name="Border"
+                                                                                Grid.Row="0">
+                                                                            <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                    <ColumnDefinition Width="*" />
+                                                                                </Grid.ColumnDefinitions>
+
+                                                                                <!--Header 컨텐츠 위치-->
+                                                                                <ContentPresenter Grid.Column="0"
+                                                                                                  ContentSource="Header"
+                                                                                                  RecognizesAccessKey="True" />
+
+                                                                                <ToggleButton Grid.Column="1"
+                                                                                              OverridesDefaultStyle="True"
+                                                                                              HorizontalAlignment="Right"
+                                                                                              Template="{StaticResource ExpanderToggleButton}" 
+                                                                                              IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                                              Margin="0, 0, 20, 0"/>
+
+                                                                            </Grid>
+                                                                        </Border>
+
+                                                                        <!--실제 리스트 아이템 위치-->
+                                                                        <Border x:Name="Content"
+                                                                                Grid.Row="1">
+                                                                            <ContentPresenter Margin="4" />
+                                                                        </Border>
+                                                                    </Grid>
+
+                                                                    <ControlTemplate.Triggers>
+                                                                        <Trigger Property="IsExpanded" Value="True">
+                                                                            <Setter TargetName="ContentRow"
+                                                                                    Property="Height"
+                                                                                    Value="{Binding Height, ElementName=Content}" />
+                                                                        </Trigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </Expander.Style>
+                                                <!--Expander 토글 스타일 END-->
+
+                                                <!--그룹 아이템 위치-->
+                                                <ItemsPresenter />
+                                                
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </controls:FrindListControl.GroupStyle>
             </controls:FrindListControl>
         </ScrollViewer>
     </Grid>

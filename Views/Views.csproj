@@ -69,6 +69,10 @@
     <None Remove="Images\chatlist_icon_sendblocked.png" />
     <None Remove="Images\chatroom_btn_time.png" />
     <None Remove="Images\chatroom_btn_time_light.png" />
+    <None Remove="Images\chatting_ico_newchat.png" />
+    <None Remove="Images\chatting_ico_newchat_on.png" />
+    <None Remove="Images\chatting_ico_openchat.png" />
+    <None Remove="Images\chatting_ico_openchat_on.png" />
     <None Remove="Images\chat_icon_facetalk_1.png" />
     <None Remove="Images\chat_icon_facetalk_2.png" />
     <None Remove="Images\chat_icon_talkbadge.png" />
@@ -128,6 +132,10 @@
   <ItemGroup>
     <Resource Include="Images\add_friend_ico.png" />
     <Resource Include="Images\add_friend_ico_on.png" />
+    <Resource Include="Images\chatting_ico_newchat.png" />
+    <Resource Include="Images\chatting_ico_newchat_on.png" />
+    <Resource Include="Images\chatting_ico_openchat.png" />
+    <Resource Include="Images\chatting_ico_openchat_on.png" />
     <Resource Include="Images\chat_Select_ico.png" />
     <Resource Include="Images\chat_UnSelect_ico.png" />
     <Resource Include="Images\friend_ico_search.png" />

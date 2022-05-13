@@ -10,7 +10,7 @@
         MinWidth="430"
         MinHeight="650">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="2"
+        <WindowChrome ResizeBorderThickness="5"
                       CaptionHeight="0"
                       CornerRadius="5"
                       GlassFrameThickness="5"/>

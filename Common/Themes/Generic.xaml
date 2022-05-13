@@ -219,10 +219,87 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ct:FrindListControl}">
-                    <Grid Background="Blue"
+                    <Grid Background="#FFFFFFFF"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch">
-                        <ItemsPresenter/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--내 프로필 표시-->
+                        <Grid Grid.Row="0"
+                              Margin="20, 0, 0, 15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="xMyProfileBorder"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"/>
+
+                            <Button x:Name="PART_MyProfile"
+                                Grid.Column="0"
+                                Width="60"
+                                Height="60"
+                                Cursor="Hand">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Name="border" Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                                <Border Margin="0,0,0,0">
+                                    <Ellipse Width="60"
+                                         Height="60"
+                                         StrokeThickness="0"
+                                         Margin="0,0,0,0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding ProfileImg, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Border>
+                            </Button>
+
+                            <Grid Grid.Column="1"
+                                  Margin="0, 0, 0, 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                       Text="{Binding MyName, RelativeSource={RelativeSource TemplatedParent}}"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       Margin="10, 10, 0, 0"/>
+                                <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Top"
+                                       Foreground="#FF999999"
+                                       Text="{Binding StatusMsg, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Margin="10, 0, 0, 0"/>
+                            </Grid>
+                        </Grid>
+                        <!--내 프로필 표시 END-->
+
+                        <Border Grid.Row="1"
+                                BorderBrush="#FFE4E2E2"
+                                BorderThickness="0.3"
+                                Margin="0, 0, 0, 10"/>
+
+                        <ItemsPresenter Grid.Row="2"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -233,32 +310,165 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ct:FrindListItemControl}">
-                    <Grid>
+                    <Grid x:Name="xFriendInfoItemGrid"
+                          Margin="10, 0, 0, 10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
+                        <Border x:Name="xFriendInfoItemBorder"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"/>
+
                         <Button x:Name="PART_Profile"
                                 Grid.Column="0"
-                                Width="150">
-                            <TextBlock Grid.Row="0"
-                                       Text="{Binding FriendName, RelativeSource={RelativeSource TemplatedParent}}" />
+                                Width="50"
+                                Height="50"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Name="border" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                            <Border Margin="0,0,0,0">
+                                <Ellipse Width="50"
+                                         Height="50"
+                                         StrokeThickness="0"
+                                         Margin="0,0,0,0">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
                         </Button>
 
                         <Grid x:Name="PART_FriendInfo"
-                              Grid.Column="1">
+                              Grid.Column="1"
+                              Margin="0, 0, 0, 0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0"
-                                       Text="aaa" FontSize="20" />
+                                       Text="{Binding Name}"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       Margin="10, 10, 0, 0"/>
                             <TextBlock Grid.Row="1"
-                                       Text="{Binding FriendStatusMsg, RelativeSource={RelativeSource TemplatedParent}}" />
+                                       VerticalAlignment="Top"
+                                       Foreground="#FF999999"
+                                       FontSize="12"
+                                       Text="{Binding UserProfile.Status}"
+                                       Margin="10, 0, 0, 0"/>
                         </Grid>
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="xFriendInfoItemBorder"
+                                    Property="Background"
+                                    Value="#FFD2D1D1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ct:ChattingListControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ct:ChattingListControl}">
+                    <Grid Background="#FFFFFFFF"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch">
+                        <ItemsPresenter/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ct:ChattingListItemControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ct:ChattingListItemControl}">
+                    <Grid x:Name="PART_ChatInfo"
+                          Margin="10, 0, 0, 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="xChattingRoomItemBorder"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"/>
+
+                        <!--채팅방 썸네일 표시-->
+                        <Border Grid.Column="0"
+                                Margin="0,0,0,0">
+                            <Ellipse Width="50"
+                                     Height="50"
+                                     StrokeThickness="0"
+                                     Margin="0,0,0,0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding ThumbnailBase64, Converter={StaticResource Base64ToBitmapImageConverter}}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                        <!--채팅방 썸네일 표시 END-->
+
+                        <Grid Grid.Column="1"
+                              Margin="0, 0, 0, 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="{Binding user[1].Name}"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       Margin="10, 10, 0, 0"/>
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Top"
+                                       Foreground="#FF999999"
+                                       Text="{Binding LastChatMsg}"
+                                       FontSize="12"
+                                       Margin="10, 0, 0, 0"/>
+                        </Grid>
+
+                        <TextBlock Grid.Column="2"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Foreground="#FF999999"
+                                   Text="{Binding LastChatTime, StringFormat=tt H:mm}"
+                                   FontSize="12"
+                                   Margin="0, 0, 10, 0"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="xChattingRoomItemBorder"
+                                    Property="Background"
+                                    Value="#FFD2D1D1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

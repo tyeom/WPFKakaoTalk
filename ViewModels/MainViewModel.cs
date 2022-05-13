@@ -16,7 +16,7 @@ namespace ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    private readonly IDialogService _dialogService;
+    private readonly IDialogService _mainSettingDialogService = (IDialogService)ShellViewModel.Services.GetService(typeof(IDialogService))!;
     private readonly IUserService _userService;
     private readonly ISettingService _settingService;
 
@@ -29,11 +29,10 @@ public class MainViewModel : ViewModelBase
     private bool _showSettingMenuPopup = false;
     private ViewModelBase? _contentViewModel;
 
-    public MainViewModel(IDialogService dialogService, IUserService userService, ISettingService settingService)
+    public MainViewModel(IUserService userService, ISettingService settingService)
     {
         Logger.Log.Write("MainViewModel Constructor");
 
-        _dialogService = dialogService;
         _userService = userService;
         _settingService = settingService;
 
@@ -178,9 +177,12 @@ public class MainViewModel : ViewModelBase
         var myProfile = await _userService.GetMyProfileAsync(_userService.UserInfo.Id);
         // get my friend
         var myFriend = await _userService.GetFriendListAsync(_userService.UserInfo.Id);
+        // get chatting room
+        var chattingRoom = await _userService.GetChattingRoomListAsync(_userService.UserInfo.Id);
 
         _userService.UserInfo.UserProfile = myProfile!;
         _userService.UserInfo.FriendList = myFriend!;
+        _userService.UserInfo.ChattingRoomList = chattingRoom!;
 
         LoadingShow = false;
 
@@ -210,9 +212,9 @@ public class MainViewModel : ViewModelBase
 
     private void SettingExecute()
     {
-        _dialogService.SetSize(500, 650);
-        _dialogService.SetVM(new MainSettingPopupViewModel(), "설정");
-        _dialogService.Dialog.Show();
+        _mainSettingDialogService.SetSize(500, 650);
+        _mainSettingDialogService.SetVM(new MainSettingPopupViewModel(), "설정");
+        _mainSettingDialogService.Dialog.Show();
     }
 
     private void LogoutExecute()

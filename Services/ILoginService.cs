@@ -29,7 +29,7 @@ public class LoginService : ILoginService
         User user = new User()
         {
             Id = Guid.NewGuid(),
-            FriendUserType = Common.Enums.EFriendUserType.Me,
+            FriendUserType = Common.Enums.EFriendUserType.None,
             Name = "WPF카카오톡",
             PhoneNumber = "01012344321",
             Nationality = "KR",

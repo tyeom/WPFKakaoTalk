@@ -16,6 +16,8 @@ public interface IDialog
 
     object? DataContext { get; set; }
 
+    bool Activate();
+
     void Show();
 
     bool? ShowDialog();

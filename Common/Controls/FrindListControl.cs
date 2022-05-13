@@ -5,27 +5,108 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Common.Controls;
 
+[TemplatePart(Name = MyProfilePartName, Type = typeof(Button))]
 public class FrindListControl : ItemsControl
 {
+    private const string MyProfilePartName = "PART_MyProfile";
+
+    private Button? _myProfile;
+
     public FrindListControl()
     {
         this.DefaultStyleKey = typeof(FrindListControl);
     }
 
+    public static readonly DependencyProperty MyProfileCommandProperty =
+            DependencyProperty.Register(
+                "MyProfileCommand",
+                typeof(ICommand),
+                typeof(FrindListControl),
+                new UIPropertyMetadata(null));
+
+    public ICommand MyProfileCommand
+    {
+        get
+        {
+            return (ICommand)GetValue(MyProfileCommandProperty);
+        }
+        set
+        {
+            SetValue(MyProfileCommandProperty, value);
+        }
+    }
+
+    public static readonly DependencyProperty MyProfileCommandParameterProperty =
+            DependencyProperty.Register(
+                "MyProfileCommandParameter",
+                typeof(Object),
+                typeof(FrindListControl),
+                new UIPropertyMetadata(null));
+
+    public Object? MyProfileCommandParameter
+    {
+        get
+        {
+            return (Object?)GetValue(MyProfileCommandParameterProperty);
+        }
+        set
+        {
+            SetValue(MyProfileCommandParameterProperty, value);
+        }
+    }
+
+    public BitmapImage? ProfileImg
+    {
+        get { return base.GetValue(ProfileImgProperty) as BitmapImage; }
+        set { base.SetValue(ProfileImgProperty, value); }
+    }
+
+    public static readonly DependencyProperty ProfileImgProperty =
+      DependencyProperty.Register("ProfileImg", typeof(BitmapImage), typeof(FrindListControl), new UIPropertyMetadata(null));
+
+    public string? MyName
+    {
+        get { return base.GetValue(MyNameProperty) as string; }
+        set { base.SetValue(MyNameProperty, value); }
+    }
+
+    public static readonly DependencyProperty MyNameProperty =
+      DependencyProperty.Register("MyName", typeof(string), typeof(FrindListControl), new UIPropertyMetadata(null));
+
+    public string? StatusMsg
+    {
+        get { return base.GetValue(StatusMsgProperty) as string; }
+        set { base.SetValue(StatusMsgProperty, value); }
+    }
+
+    public static readonly DependencyProperty StatusMsgProperty =
+      DependencyProperty.Register("StatusMsg", typeof(string), typeof(FrindListControl), new UIPropertyMetadata(null));
+
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        _myProfile = GetTemplateChild(MyProfilePartName) as Button;
+        if (_myProfile is not null)
+        {
+            _myProfile.Click += (_, __) =>
+            {
+                if (MyProfileCommand is not null)
+                    MyProfileCommand.Execute(MyProfileCommandParameter);
+            };
+        }
     }
 
-    protected override DependencyObject GetContainerForItemOverride()
-    {
-        return new FrindListItemControl();
-    }
+    //protected override DependencyObject GetContainerForItemOverride()
+    //{
+    //    return new FrindListItemControl();
+    //}
 }
 
 [TemplatePart(Name = ProfilePartName, Type = typeof(Button))]
@@ -48,6 +129,15 @@ public class FrindListItemControl : ContentControl
         get => _profilePart;
     }
 
+    public Guid? Id
+    {
+        get { return base.GetValue(IdProperty) as Guid?; }
+        set { base.SetValue(IdProperty, value); }
+    }
+
+    public static readonly DependencyProperty IdProperty =
+      DependencyProperty.Register("Id", typeof(Guid), typeof(FrindListItemControl), new UIPropertyMetadata(null));
+
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -55,7 +145,16 @@ public class FrindListItemControl : ContentControl
         _profilePart = GetTemplateChild(ProfilePartName) as Button;
         _friendInfoPart = GetTemplateChild(FriendInfoPartName) as Grid;
 
-        if (_friendInfoPart == null) return;
+        if (_profilePart is not null)
+        {
+            _profilePart.Click += (_, __) =>
+            {
+                if (FriendInfoCommand is not null)
+                    FriendInfoCommand.Execute(FriendInfoCommandParameter);
+            };
+        }
+
+        if (_friendInfoPart is null) return;
         _friendInfoPart.MouseDown += this.FriendInfoPart_MouseDown;
     }
 
@@ -63,37 +162,10 @@ public class FrindListItemControl : ContentControl
     {
         if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
         {
-            if(FriendInfoCommand is not null)
-                FriendInfoCommand.Execute(FriendInfoCommandParameter);
+            if(FriendChatCommand is not null)
+                FriendChatCommand.Execute(FriendChatCommandParameter);
         }
     }
-
-    public BitmapImage? ProfileImg
-    {
-        get { return base.GetValue(ProfileImgProperty) as BitmapImage; }
-        set { base.SetValue(ProfileImgProperty, value); }
-    }
-
-    public static readonly DependencyProperty ProfileImgProperty =
-      DependencyProperty.Register("ProfileImg", typeof(BitmapImage), typeof(FrindListItemControl), new UIPropertyMetadata(null));
-
-    public string? FriendName
-    {
-        get { return base.GetValue(FriendNameProperty) as string; }
-        set { base.SetValue(FriendNameProperty, value); }
-    }
-
-    public static readonly DependencyProperty FriendNameProperty =
-      DependencyProperty.Register("FriendName", typeof(string), typeof(FrindListItemControl), new UIPropertyMetadata(null));
-
-    public string? FriendStatusMsg
-    {
-        get { return base.GetValue(FriendStatusMsgProperty) as string; }
-        set { base.SetValue(FriendStatusMsgProperty, value); }
-    }
-
-    public static readonly DependencyProperty FriendStatusMsgProperty =
-      DependencyProperty.Register("FriendStatusMsg", typeof(string), typeof(FrindListItemControl), new UIPropertyMetadata(null));
 
     public static readonly DependencyProperty FriendInfoCommandProperty =
             DependencyProperty.Register(
@@ -130,6 +202,44 @@ public class FrindListItemControl : ContentControl
         set
         {
             SetValue(FriendInfoCommandParameterProperty, value);
+        }
+    }
+
+    public static readonly DependencyProperty FriendChatCommandProperty =
+            DependencyProperty.Register(
+                "FriendChatCommand",
+                typeof(ICommand),
+                typeof(FrindListItemControl),
+                new UIPropertyMetadata(null));
+
+    public ICommand FriendChatCommand
+    {
+        get
+        {
+            return (ICommand)GetValue(FriendChatCommandProperty);
+        }
+        set
+        {
+            SetValue(FriendChatCommandProperty, value);
+        }
+    }
+
+    public static readonly DependencyProperty FriendChatCommandParameterProperty =
+            DependencyProperty.Register(
+                "FriendChatCommandParameter",
+                typeof(Object),
+                typeof(FrindListItemControl),
+                new UIPropertyMetadata(null));
+
+    public Object? FriendChatCommandParameter
+    {
+        get
+        {
+            return (Object?)GetValue(FriendChatCommandParameterProperty);
+        }
+        set
+        {
+            SetValue(FriendChatCommandParameterProperty, value);
         }
     }
 }

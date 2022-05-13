@@ -25,6 +25,8 @@ public record User
     public UserProfile UserProfile { get; set; } = new UserProfile();
 
     public IList<User> FriendList { get; set; } = new List<User>();
+
+    public IList<ChattingRoom> ChattingRoomList { get; set; } = new List<ChattingRoom>();
 }
 
 public record UserProfile

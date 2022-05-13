@@ -14,7 +14,7 @@ public interface IDialogService
 
     void SetSize(double width, double height);
 
-    void SetVM(ViewModelBase vm, string? title);
+    void SetVM(ViewModelBase vm, string? title, bool duplicateShow = false);
 }
 
 public class DialogService : IDialogService
@@ -34,12 +34,31 @@ public class DialogService : IDialogService
         _popWindow.Height = height;
     }
 
-    public void SetVM(ViewModelBase vm, string? title)
+    public void SetVM(ViewModelBase vm, string? title, bool duplicateShow = false)
     {
-        if (_popWindow.DataContext is PopViewModel viewModel)
+        if (duplicateShow is false)
         {
-            _popWindow.Title = title;
-            viewModel.PopupVM = vm;
+            // 이미 표시된 팝업창이 있는 경우 활성화하고 return
+            foreach (var popupWin in System.Windows.Application.Current.Windows)
+            {
+                if (_popWindow.DataContext is PopViewModel viewModel)
+                {
+                    if (viewModel.PopupVM is not null &&
+                        viewModel.PopupVM.GetType().FullName == vm.GetType().FullName)
+                    {
+                        _popWindow.Activate();
+                        return;
+                    }
+                }
+            }
+        }
+
+        {
+            if (_popWindow.DataContext is PopViewModel viewModel)
+            {
+                _popWindow.Title = title;
+                viewModel.PopupVM = vm;
+            }
         }
     }
 }

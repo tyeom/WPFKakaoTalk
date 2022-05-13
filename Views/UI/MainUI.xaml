@@ -6,9 +6,7 @@
              xmlns:local="clr-namespace:Views.UI"
              xmlns:controls="clr-namespace:Common.Controls;assembly=Common"
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-             mc:Ignorable="d" 
-             MinWidth="430"
-             MinHeight="650">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="sLoginButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -82,7 +80,7 @@
                                                   Command="{Binding SideMenuCommand}"
                                                   CommandParameter="FriendList"/>
                 <controls:MainSideMenuItemControl ToolTip="채팅"
-                                                  Badge="1234"
+                                                  Badge="999"
                                                   IConImage="/Views;component/Images/chat_UnSelect_ico.png"
                                                   MouseOverIConImage="/Views;component/Images/chat_UnSelect_ico.png"
                                                   SelectedIConImage="/Views;component/Images/chat_Select_ico.png"
