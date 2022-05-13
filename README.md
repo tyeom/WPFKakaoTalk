@@ -67,6 +67,39 @@ Model 의존 참조 없음 (단독 모듈)
 - 채팅 화면에서 Infinite scroll 구현
 - 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
 
+-
+
+***
+
+> KakaoTalk?
+>> Messenger serviced by Kakao, a representative Korean company
+
+<br/>
+This is a KakaoTalk PC version clone project with WPF<br/>
+This is a WPF project that implements pure client functions without a separate communication function with the server.<br/>
+We set the goal of implementation so that it can actually operate as much as possible other than server communication.
+Made.
+
+Environment
+-
+
+- IDE : VS 2022
+- Language : C# (WPF)
+- Framework : .Net6 / Windows Only
+
+library to use
+-
+
+- Log
+  - LogHelper / self-made
+- MVVM related
+  - Microsoft.Toolkit.Mvvm/ver: 7.1.2
+  - Microsoft.Xaml.Behaviors
+- DependencyInjection related
+  - Microsoft.Extensions.DependencyInjection/ver: 6.0.0
+
+***
+
 캡쳐 화면
 -
 
