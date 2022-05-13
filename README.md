@@ -17,12 +17,37 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 - Command처리 및 다양한 바인딩 처리 방식에 대해 익힐 수 있습니다.
 - 간단한 커스텀 컨트롤 샘플 예제가 있어 직접 활용할 수 있습니다.
 
+개발 환경 정보
+-
+
+- IDE : VS 2022
+- Language : C# (WPF)
+- Framework : .Net6 / Windows Only
+
+사용 라이브러리
+-
+
+- 로그 관련
+  - LogHelper / 자체 제작
+- MVVM 관련
+  - Microsoft.Toolkit.Mvvm / ver : 7.1.2
+  - Microsoft.Xaml.Behaviors
+- DependencyInjection 관련
+  - Microsoft.Extensions.DependencyInjection / ver : 6.0.0
+
+
 솔루션 구조
 -
-......
+
+Model / View / ViewModel 모두 물리적 분리 목표<br/>
+View -> Common 의존 참조 (외부에서 ViewModel 주입)
+ViewModel -> Common, Model, Service 의존 참조
+Service -> View 의존 참조
+Model 의존 참조 없음 (단독 모듈)
 
 구현 기능
 -
+
 - 로그인 화면
 - 로그인 잠금 화면
 - 로그인 환경설정
@@ -32,6 +57,7 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 
 앞으로 구현 기능
 -
+
 - 채팅방 화면
 - 실제 채팅 기능 [서버와 통신 X]
 - 채팅 목록 캡쳐 해서 내보내기 기능
@@ -39,6 +65,7 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 
 캡쳐 화면
 -
+
 ![image](https://user-images.githubusercontent.com/13028129/168229017-63e40d38-4b87-45bc-b040-fea457932bef.png)<br/>
 **[로그인]**
 
