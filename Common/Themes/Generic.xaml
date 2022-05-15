@@ -460,6 +460,36 @@
                                    Text="{Binding LastChatTime, StringFormat=tt H:mm}"
                                    FontSize="12"
                                    Margin="0, 0, 10, 0"/>
+
+                        <!--뱃지-->
+                        <Border Grid.Column="2"
+                                Background="#FFFF3A24"
+                                CornerRadius="7"
+                                MinWidth="27"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                Height="17"
+                                Margin="0, 0, 10, -5">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChatCount}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock x:Name="xBadgeCount"
+                                       Text="{Binding ChatCount}"
+                                       Foreground="White"
+                                       FontSize="11"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="0, 0, 0, 0"
+                                       FontFamily="/MainEntry;component/Fonts/#나눔스퀘어 Bold" />
+                        </Border>
+                        <!--뱃지 END-->
+                        
                     </Grid>
 
                     <ControlTemplate.Triggers>
