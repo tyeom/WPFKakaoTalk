@@ -229,6 +229,7 @@ public class MainViewModel : ViewModelBase
 
     private void LockModeExecute()
     {
+        this.SetProfileImgAsync();
         IsLockScreenMode = true;
     }
 

@@ -17,6 +17,8 @@ public partial class PopWindow : Window, IDialog
 
     private void xCloseBtn_Click(object sender, RoutedEventArgs e)
     {
+        // IDialogService를 재사용 하는 뷰모델이 있을 수 있기에 [MainView > SettingExecute, 메인 환경설정 팝업창]
+        // Close시 완전 창을 닫지 않고 숨김처리만 한다.
         this.Hide();
     }
 

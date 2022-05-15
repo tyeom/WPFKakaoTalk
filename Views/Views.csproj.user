@@ -29,10 +29,10 @@
     <Compile Update="UI\MainUI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UI\UserProfileShowUI.xaml.cs">
+    <Compile Update="Windows\PopWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\PopWindow.xaml.cs">
+    <Compile Update="Windows\UserProfileViewWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -64,10 +64,10 @@
     <Page Update="UI\MainUI.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UI\UserProfileShowUI.xaml">
+    <Page Update="Windows\PopWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\PopWindow.xaml">
+    <Page Update="Windows\UserProfileViewWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

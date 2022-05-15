@@ -24,3 +24,14 @@ public interface IDialog
 
     void Close();
 }
+
+public interface IUserProfileViewDialog
+{
+    object? DataContext { get; set; }
+
+    bool Activate();
+
+    void Show();
+
+    void Close();
+}

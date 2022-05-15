@@ -19,15 +19,16 @@ namespace ViewModels;
 public class FriendListViewModel : ViewModelBase
 {
     private readonly IUserService _userService;
-    private readonly IDialogService _profileShowDialogService = (IDialogService)ShellViewModel.Services.GetService(typeof(IDialogService))!;
+    private readonly IUserProfileViewerDialogService _userProfileViewerDialogService;
 
     private ICollectionView _friendListView;
     private User _myProfile;
     private ObservableCollection<User> _friendList;
 
-    public FriendListViewModel(IUserService userService)
+    public FriendListViewModel(IUserService userService, IUserProfileViewerDialogService userProfileViewerDialogService)
     {
         _userService = userService;
+        _userProfileViewerDialogService = userProfileViewerDialogService;
 
         MyProfile = _userService.UserInfo;
 
@@ -84,10 +85,26 @@ public class FriendListViewModel : ViewModelBase
     #region Commands Execute Methods
     private void ProfileExecute(User? user)
     {
-        WeakReferenceMessenger.Default.Send<UserInfo, string>(
-            new UserInfo(user!) { IsMe = user is null ? true : false},
-            "ShowProfile"
+        if (user is null)
+        {
+            _userProfileViewerDialogService.SetVM(new UserProfileShowViewModel(_userService.UserInfo));
+            _userProfileViewerDialogService.Dialog.Show();
+
+            WeakReferenceMessenger.Default.Send<UserInfo, string>(
+                new UserInfo(_userService.UserInfo) { IsMe = true},
+                "ShowProfile"
             );
+        }
+        else
+        {
+            _userProfileViewerDialogService.SetVM(new UserProfileShowViewModel(user));
+            _userProfileViewerDialogService.Dialog.Show();
+
+            WeakReferenceMessenger.Default.Send<UserInfo, string>(
+                new UserInfo(user!) { IsMe = false },
+                "ShowProfile"
+            );
+        }
     }
 
     private void ChatExecute(User? user)

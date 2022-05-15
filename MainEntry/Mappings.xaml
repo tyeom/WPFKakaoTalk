@@ -39,11 +39,6 @@
         <mainSettings:AboutPage />
     </DataTemplate>
 
-    <!--프로필 보기 뷰-->
-    <DataTemplate DataType="{x:Type dataContext:UserProfileShowViewModel}">
-        <views:UserProfileShowUI />
-    </DataTemplate>
-    
     <!--친구 리스트 뷰-->
     <DataTemplate DataType="{x:Type dataContext:FriendListViewModel}">
         <views:FriendListUI />
