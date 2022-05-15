@@ -1,6 +1,6 @@
 ﻿using Common.Base;
 using Common.Helper;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Services;
 using System;
@@ -142,6 +142,16 @@ public class MainViewModel : ViewModelBase
         }
     }
 
+    private RelayCommand _lockModeCommand;
+    public RelayCommand LockModeCommand
+    {
+        get
+        {
+            return _lockModeCommand ??
+                (_lockModeCommand = new RelayCommand(this.LockModeExecute));
+        }
+    }
+
     private RelayCommand _logoutCommand;
     public RelayCommand LogoutCommand
     {
@@ -215,6 +225,11 @@ public class MainViewModel : ViewModelBase
         _mainSettingDialogService.SetSize(500, 650);
         _mainSettingDialogService.SetVM(new MainSettingPopupViewModel(), "설정");
         _mainSettingDialogService.Dialog.Show();
+    }
+
+    private void LockModeExecute()
+    {
+        IsLockScreenMode = true;
     }
 
     private void LogoutExecute()

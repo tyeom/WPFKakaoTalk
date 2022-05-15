@@ -1,6 +1,7 @@
 ﻿using Common.Base;
 using Common.Extensions;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Models;
 using Services;
 using System;
@@ -11,12 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ViewModels.Messaging;
 
 namespace ViewModels;
 
 public class FriendListViewModel : ViewModelBase
 {
     private readonly IUserService _userService;
+    private readonly IDialogService _profileShowDialogService = (IDialogService)ShellViewModel.Services.GetService(typeof(IDialogService))!;
 
     private ICollectionView _friendListView;
     private User _myProfile;
@@ -81,7 +84,10 @@ public class FriendListViewModel : ViewModelBase
     #region Commands Execute Methods
     private void ProfileExecute(User? user)
     {
-
+        WeakReferenceMessenger.Default.Send<UserInfo, string>(
+            new UserInfo(user!) { IsMe = user is null ? true : false},
+            "ShowProfile"
+            );
     }
 
     private void ChatExecute(User? user)

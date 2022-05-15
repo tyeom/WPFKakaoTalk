@@ -29,6 +29,9 @@
     <Compile Update="UI\MainUI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI\UserProfileShowUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\PopWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -59,6 +62,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UI\MainUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\UserProfileShowUI.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\PopWindow.xaml">
