@@ -106,7 +106,7 @@ library to use
 ![image](https://user-images.githubusercontent.com/13028129/168229017-63e40d38-4b87-45bc-b040-fea457932bef.png)<br/>
 **[로그인]**
 
-![image](https://user-images.githubusercontent.com/13028129/168453153-3f61bf9a-e52b-4c9e-83ff-09dc1dcdae8a.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168453264-f05b781f-b9ce-49da-a4ea-0f9fca887631.png)<br/>
 **[잠금 화면]**
 
 ![image](https://user-images.githubusercontent.com/13028129/168229251-a6136f83-1388-40b7-bc8b-fbb3b5be3c78.png)<br/>
