@@ -28,6 +28,7 @@ public class UserProfileViewerDialogService : IUserProfileViewerDialogService
 
     public void SetVM(ViewModelBase vm)
     {
+        _userProfileViewWindow.DataContext = null;
         _userProfileViewWindow.DataContext = vm;
     }
 }
