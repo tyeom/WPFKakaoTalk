@@ -1,6 +1,6 @@
 ﻿using Common.Base;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Services;
 using System.Windows.Media;

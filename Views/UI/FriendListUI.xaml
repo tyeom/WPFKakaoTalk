@@ -165,6 +165,7 @@
                                        VerticalAlignment="Stretch"
                                        ItemsSource="{Binding FriendListView}"
                                        ProfileImg="{Binding MyProfile.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}"
+                                       MyProfileCommand="{Binding ProfileCommand}"
                                        MyName="{Binding MyProfile.Name}"
                                        StatusMsg="{Binding MyProfile.UserProfile.Status}">
                 <controls:FrindListControl.ItemTemplate>

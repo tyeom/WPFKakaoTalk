@@ -1,6 +1,7 @@
 ﻿using Common.Base;
 using Common.Extensions;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Models;
 using Services;
 using System;
@@ -11,20 +12,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ViewModels.Messaging;
 
 namespace ViewModels;
 
 public class FriendListViewModel : ViewModelBase
 {
     private readonly IUserService _userService;
+    private readonly IUserProfileViewerDialogService _userProfileViewerDialogService;
 
     private ICollectionView _friendListView;
     private User _myProfile;
     private ObservableCollection<User> _friendList;
 
-    public FriendListViewModel(IUserService userService)
+    public FriendListViewModel(IUserService userService, IUserProfileViewerDialogService userProfileViewerDialogService)
     {
         _userService = userService;
+        _userProfileViewerDialogService = userProfileViewerDialogService;
 
         MyProfile = _userService.UserInfo;
 
@@ -81,7 +85,26 @@ public class FriendListViewModel : ViewModelBase
     #region Commands Execute Methods
     private void ProfileExecute(User? user)
     {
+        if (user is null)
+        {
+            _userProfileViewerDialogService.SetVM(new UserProfileShowViewModel(_userService.UserInfo));
+            _userProfileViewerDialogService.Dialog.Show();
 
+            WeakReferenceMessenger.Default.Send<UserInfo, string>(
+                new UserInfo(_userService.UserInfo) { IsMe = true},
+                "ShowProfile"
+            );
+        }
+        else
+        {
+            _userProfileViewerDialogService.SetVM(new UserProfileShowViewModel(user));
+            _userProfileViewerDialogService.Dialog.Show();
+
+            WeakReferenceMessenger.Default.Send<UserInfo, string>(
+                new UserInfo(user!) { IsMe = false },
+                "ShowProfile"
+            );
+        }
     }
 
     private void ChatExecute(User? user)

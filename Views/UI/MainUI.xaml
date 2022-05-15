@@ -115,7 +115,8 @@
                     <MenuItem Header="잠금모드      Ctrl+L"
                               Height="22"
                               TextBlock.FontSize="13"
-                              TextBlock.FontFamily="/MainEntry;component/Fonts/#나눔스퀘어"/>
+                              TextBlock.FontFamily="/MainEntry;component/Fonts/#나눔스퀘어"
+                              Command="{Binding LockModeCommand}"/>
                     <MenuItem Header="로그아웃      Alt+N"
                               Height="22"
                               TextBlock.FontSize="13"

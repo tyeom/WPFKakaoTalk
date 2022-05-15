@@ -32,6 +32,9 @@
     <Compile Update="Windows\PopWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\UserProfileViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UI\ChattingListUI.xaml">
@@ -62,6 +65,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\PopWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\UserProfileViewWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
