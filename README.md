@@ -42,9 +42,9 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 Model / View / ViewModel 모두 물리적 분리 목표
 
 
-View -> Common 의존 참조 (외부에서 ViewModel 주입)
-ViewModel -> Common, Model, Service 의존 참조
-Service -> View 의존 참조
+View -> Common 의존 참조 (외부에서 ViewModel 주입)<br/>
+ViewModel -> Common, Model, Service 의존 참조<br/>
+Service -> View 의존 참조 (popup window IoC 관리) <br/>
 Model 의존 참조 없음 (단독 모듈)
 
 구현 기능
@@ -67,8 +67,6 @@ Model 의존 참조 없음 (단독 모듈)
 - 채팅 목록 캡쳐 해서 내보내기 기능
 - 채팅 화면에서 Infinite scroll 구현
 - 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
-
--
 
 ***
 
