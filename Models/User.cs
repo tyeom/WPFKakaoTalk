@@ -32,7 +32,7 @@ public record User
 public record UserProfile
 {
     /// <summary>
-    /// 상태 메세지
+    /// 프로필 이미지 Base64
     /// </summary>
     public string? UserProfileImgBase64 { get; set; }
 
