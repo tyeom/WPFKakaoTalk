@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="Views.UI.SearchFriendPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Views.UI"
+             xmlns:behaviors="clr-namespace:Common.Behaviors;assembly=Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              TextBlock.FontSize="13"
+              Margin="15, 20, 15, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0"
+                     Width="370"
+                     behaviors:TextBoxBehavior.AcceptsEnter="True"
+                     behaviors:TextBoxBehavior.AcceptsEnterCommand="{Binding SearchFriendCommand}"
+                     Text="{Binding SearchFriend, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="20"
+                     Margin="0, 0, 0, 0"
+                     Style="{StaticResource sPlatUnderLineTextBox}"/>
+            <TextBlock Grid.Column="1"
+                       Foreground="#FF999999"
+                       Text="{Binding SearchFriend, Converter={StaticResource InputStrLengthConverter}, ConverterParameter=20}"
+                       Margin="0, 0, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              VerticalAlignment="Top"
+              Margin="0, 30, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--프로필 사진 표시-->
+            <Border Grid.Row="0"
+                    VerticalAlignment="Top"
+                    Margin="0,0,0,0">
+                <Rectangle Width="90"
+                           Height="100"
+                           StrokeThickness="0"
+                           RadiusX="35"
+                           RadiusY="40"
+                           Margin="0,0,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding SearchUser.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+            <!--프로필 사진 표시 END-->
+
+            <TextBlock Grid.Row="1"
+                       Foreground="#FF000000"
+                       FontSize="13"
+                       HorizontalAlignment="Center"
+                       Text="{Binding SearchUser.Name}"
+                       Margin="0, 5, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            
+            <TextBlock Grid.Row="2"
+                       Foreground="#FF999999"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       Text="{Binding SearchUser.UserProfile.Status}"
+                       Margin="0, 5, 0, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+        </Grid>
+
+        <Button Grid.Row="2"
+                Content="친구 추가"
+                Height="40"
+                Width="80"
+                HorizontalAlignment="Right"
+                Command="{Binding FriendAddCommand}"
+                Margin="0, 0, 20, 20">
+            <Button.Style>
+                <Style BasedOn="{StaticResource sYellowButtonStyle}" TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SearchUser}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

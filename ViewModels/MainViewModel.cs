@@ -1,7 +1,7 @@
 ﻿using Common.Base;
 using Common.Helper;
 using Microsoft.Toolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,11 @@ public class MainViewModel : ViewModelBase
 
     private bool _loadingShow = false;
     private bool _showSettingMenuPopup = false;
+    private bool _mainPopupShow = false;
+    private string? _popupTitle;
+    private double _popupWidth;
+    private double _popupHeight;
+    private ViewModelBase? _popupContentViewModel;
     private ViewModelBase? _contentViewModel;
 
     public MainViewModel(IUserService userService, ISettingService settingService)
@@ -44,6 +49,9 @@ public class MainViewModel : ViewModelBase
         }
 
         Email = _userService.UserInfo.Email;
+
+        WeakReferenceMessenger.Default.Register<MainPopup>(this, this.ShowMainPopup);
+        WeakReferenceMessenger.Default.Register<object, string>(this, "CloseMainPopup", this.CloseMainPopup);
 
         Logger.Log.Write("MainViewModel Constructor End");
     }
@@ -77,6 +85,39 @@ public class MainViewModel : ViewModelBase
     {
         get => _email;
         set => SetProperty(ref _email, value);
+    }
+
+    public bool MainPopupShow
+    {
+        get => _mainPopupShow;
+        set => SetProperty(ref _mainPopupShow, value);
+    }
+
+    public string? PopupTitle
+    {
+        get => _popupTitle;
+        set => SetProperty(ref _popupTitle, value);
+    }
+
+    public double PopupWidth
+    {
+        get => _popupWidth;
+        set => SetProperty(ref _popupWidth, value);
+    }
+
+    public double PopupHeight
+    {
+        get => _popupHeight;
+        set => SetProperty(ref _popupHeight, value);
+    }
+
+    /// <summary>
+    /// 메인 팝업 컨텐츠
+    /// </summary>
+    public ViewModelBase? PopupContentViewModel
+    {
+        get => _popupContentViewModel;
+        set => SetProperty(ref _popupContentViewModel, value);
     }
 
     /// <summary>
@@ -139,6 +180,20 @@ public class MainViewModel : ViewModelBase
         {
             return _settingCommand ??
                 (_settingCommand = new RelayCommand(this.SettingExecute));
+        }
+    }
+
+    private RelayCommand _popupCloseCommand;
+    public RelayCommand PopupCloseCommand
+    {
+        get
+        {
+            return _popupCloseCommand ??
+                (_popupCloseCommand = new RelayCommand(() =>
+                {
+                    PopupContentViewModel = null;
+                    MainPopupShow = false;
+                }));
         }
     }
 
@@ -266,6 +321,23 @@ public class MainViewModel : ViewModelBase
                 }));
             }
         });
+    }
+
+    private void ShowMainPopup(object recipient, MainPopup mainPopup)
+    {
+        PopupContentViewModel = null;
+        PopupContentViewModel = mainPopup!.Value;
+        PopupTitle = mainPopup.Title;
+        PopupWidth = mainPopup.Width;
+        PopupHeight = mainPopup.Height;
+        MainPopupShow = true;
+    }
+
+    private void CloseMainPopup(object recipient, object? obj)
+    {
+        PopupContentViewModel = null;
+        PopupTitle = null;
+        MainPopupShow = false;
     }
     #endregion  // Methods
 }

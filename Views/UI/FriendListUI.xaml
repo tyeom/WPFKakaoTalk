@@ -122,6 +122,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="37"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -130,7 +131,7 @@
                    Text="친구"
                    FontSize="20"
                    VerticalAlignment="Bottom"
-                   Margin="10, 0, 0, 0"
+                   Margin="20, 0, 0, 0"
                    Style="{StaticResource xNanumSquare_BFont}"/>
 
         <StackPanel Grid.Row="0"
@@ -143,24 +144,120 @@
                                   Height="33"
                                   NormalImage="/Views;component/Images/friend_ico_search.png"
                                   PressImage="/Views;component/Images/friend_ico_search_on.png"
-                                  Cursor="Hand"/>
+                                  Cursor="Hand"
+                                  Command="{Binding ShowSearchFriendCommand}"/>
             <controls:ImageButton VerticalAlignment="Bottom"
                                   Width="33"
                                   Height="33"
                                   NormalImage="/Views;component/Images/add_friend_ico.png"
                                   PressImage="/Views;component/Images/add_friend_ico_on.png"
-                                  Cursor="Hand"/>
+                                  Cursor="Hand"
+                                  Command="{Binding AddSearchFriendCommand}"/>
         </StackPanel>
+
+        <Grid Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Grid.Row="1"
+              Visibility="{Binding ShowSearchFriend, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="xSearchBorder"
+                    Grid.Column="0"
+                    BorderBrush="#FF000000"
+                    Background="{Binding ElementName=xSearchFriend, Path=Background}"
+                    CornerRadius="17"
+                    HorizontalAlignment="Stretch"
+                    Height="40"
+                    Margin="20, 15, 0, 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.Resources>
+                        <Storyboard x:Key="ChangeBorderBakWhiteColor">
+                            <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                            To="#FFFFFFFF"
+                                            Duration="0"/>
+                        </Storyboard>
+                        <Storyboard x:Key="ChangeBorderBakColor">
+                            <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                            To="#FFF2F2F2"
+                                            Duration="0"/>
+                        </Storyboard>
+                    </Grid.Resources>
+
+                    <Image Grid.Column="0"
+                           Source="/Views;component/Images/searchbar_ico_search.png"
+                           Stretch="Uniform"
+                           Width="22"
+                           Height="22"
+                           Margin="10, 0, 0, 0"/>
+                    <TextBox x:Name="xSearchFriend"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             Background="#FFF2F2F2"
+                             Text="{Binding SearchFriend, UpdateSourceTrigger=PropertyChanged}"
+                             GotFocus="xSearchFriend_GotFocus"
+                             LostFocus="xSearchFriend_LostFocus"
+                             Margin="10, 0, 10, 0">
+                        <TextBox.Style>
+                            <Style BasedOn="{StaticResource sPlatTextBox}" TargetType="TextBox">
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="GotFocus">
+                                        <BeginStoryboard Storyboard="{StaticResource ChangeBorderBakWhiteColor}" />
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="LostFocus">
+                                        <BeginStoryboard Storyboard="{StaticResource ChangeBorderBakColor}" />
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBlock x:Name="xSearchFriendHint"
+                               Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Text="이름 검색"
+                               Cursor="IBeam"
+                               Foreground="#FFA5A3A3"
+                               MouseLeftButtonUp="xSearchFriendHint_MouseLeftButtonUp"
+                               Margin="10, 0, 10, 0" />
+                    <Rectangle Grid.Column="2"
+                               Width="1.5"
+                               Height="15"
+                               Fill="#FFCFCFCF"
+                               Margin="0, 0, 10, 0"/>
+                    <TextBlock Grid.Column="3"
+                               VerticalAlignment="Center"
+                               Text="통합검색"
+                               Foreground="#FFA5A3A3"
+                               Margin="0, 0, 10, 0"/>
+                </Grid>
+            </Border>
+            <controls:IconButton Grid.Column="1"
+                                 Width="33"
+                                 Height="33"
+                                 IconImage="/Views;component/Images/titlebar_btn_close_bl.png"
+                                 Cursor="Hand"
+                                 Command="{Binding CloseSearchFriendCommand}"
+                                 Margin="10, 0, 10, 0"/>
+        </Grid>
 
         <ScrollViewer x:Name="xFriendListScrollViewer"
                       Grid.Column="0"
                       Grid.ColumnSpan="2"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       HorizontalScrollBarVisibility="Disabled"
                       HorizontalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch"
                       VerticalScrollBarVisibility="Visible"
-                      Margin="0, 10, 0, 0">
+                      Margin="0, 15, 0, 0">
             <controls:FrindListControl Grid.Column="0"
                                        VerticalAlignment="Stretch"
                                        ItemsSource="{Binding FriendListView}"

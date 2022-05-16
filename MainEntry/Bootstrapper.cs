@@ -37,6 +37,7 @@ public class Bootstrapper
         services.AddTransient<ProfileViewModel>();
         services.AddTransient<FriendListViewModel>();
         services.AddTransient<ChattingListViewModel>();
+        services.AddTransient<SearchFriendViewModel>();
 
         return services.BuildServiceProvider();
     }

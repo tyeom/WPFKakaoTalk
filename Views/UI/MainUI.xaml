@@ -164,7 +164,10 @@
                         <DataTrigger Binding="{Binding ElementName=xLoadingControl, Path=Visibility}" Value="Visible">
                             <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        
+
+                        <DataTrigger Binding="{Binding ElementName=xLayoutPopupGrid, Path=Visibility}" Value="Visible">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
                         <!--여기에 LoadingControl Visible 외 기타 Popup Visible시 조건 트리거 추가-->
                     </Style.Triggers>
                 </Style>
@@ -175,6 +178,59 @@
                                  Grid.Column="0"
                                  Grid.ColumnSpan="2"
                                  Visibility="{Binding LoadingShow, Converter={StaticResource BoolToVisConverter}}" />
+
+        <!--Layout Popup Grid-->
+        <Grid x:Name="xLayoutPopupGrid"
+              Grid.Column="1"
+              Width="{Binding PopupWidth}"
+              Height="{Binding PopupHeight}"
+              Background="#FFFFFFFF"
+              Visibility="{Binding MainPopupShow, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    Grid.RowSpan="2"
+                    BorderBrush="#FF999999"
+                    BorderThickness="1"
+                    CornerRadius="2">
+            </Border>
+
+            <Grid x:Name="xTitleGrid"
+                  Grid.Row="0"
+                  Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <controls:IconButton Grid.Row="0"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"
+                                     IconImage="/Views;component/Images/titlebar_btn_close_bl.png"
+                                     Command="{Binding PopupCloseCommand}"
+                                     Margin="0, 5, 0, 0"/>
+
+                <TextBlock Grid.Row="1"
+                           Text="{Binding PopupTitle}"
+                           FontSize="15"
+                           VerticalAlignment="Bottom"
+                           Foreground="#FF000000"
+                           Margin="15, 0, 0, 10"
+                           Style="{StaticResource xNanumSquareFont}"/>
+                <Border Grid.Row="2"
+                        BorderBrush="#FFB3B2B2"
+                        BorderThickness="0.2"/>
+            </Grid>
+
+            <ContentControl x:Name="xPopupContent"
+                            Grid.Row="1"
+                            Content="{Binding PopupContentViewModel}"
+                            Margin="0, 10, 0, 0"/>
+        </Grid>
+        <!--Layout Popup Grid END-->
         
         <!--잠금모드 화면-->
         <Grid x:Name="xLockScreenGrid"
@@ -200,7 +256,7 @@
                          StrokeThickness="0"
                          Margin="0,0,0,0">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ProfileImg}" />
+                        <ImageBrush  ImageSource="{Binding ProfileImg}" />
                     </Ellipse.Fill>
                 </Ellipse>
             </Border>

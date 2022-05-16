@@ -23,4 +23,24 @@ public partial class FriendListUI : UserControl
     {
         InitializeComponent();
     }
+
+    private void xSearchFriendHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        this.xSearchFriend.Focus();
+    }
+
+    private void xSearchFriend_GotFocus(object sender, RoutedEventArgs e)
+    {
+        this.xSearchBorder.BorderThickness = new Thickness(1);
+        this.xSearchFriendHint.Visibility = Visibility.Collapsed;
+    }
+
+    private void xSearchFriend_LostFocus(object sender, RoutedEventArgs e)
+    {
+        this.xSearchBorder.BorderThickness = new Thickness(0);
+        if (this.xSearchFriend.Text.Length <= 0)
+        {
+            this.xSearchFriendHint.Visibility = Visibility.Visible  ;
+        }
+    }
 }

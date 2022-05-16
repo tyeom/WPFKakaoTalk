@@ -40,6 +40,7 @@
             <converters:EqualOrGreaterThanConverter x:Key="EqualOrGreaterThanConverter" />
             <converters:EqualOrSmallerThanConverter x:Key="EqualOrSmallerThanConverter" />
             <converters:StrLengthConverter x:Key="StrLengthConverter" />
+            <converters:InputStrLengthConverter x:Key="InputStrLengthConverter" />
             <converters:Base64ToBitmapImageConverter x:Key="Base64ToBitmapImageConverter"/>
             <!--Converters End-->
 
@@ -283,6 +284,44 @@
                             <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="sYellowButtonStyle" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="xBorder"
+                                BorderThickness="0"
+                                BorderBrush="Transparent">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFF2F2F2"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="TextBlock.Foreground"
+                                            Value="#FFB3B3B3"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="True">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFFEE500"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="TextBlock.Foreground"
+                                            Value="#FF000000"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFFADA0A"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

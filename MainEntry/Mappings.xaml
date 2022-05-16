@@ -39,6 +39,11 @@
         <mainSettings:AboutPage />
     </DataTemplate>
 
+    <!--친구 찾기 팝업-->
+    <DataTemplate DataType="{x:Type dataContext:SearchFriendViewModel}">
+        <views:SearchFriendPopup />
+    </DataTemplate>
+
     <!--친구 리스트 뷰-->
     <DataTemplate DataType="{x:Type dataContext:FriendListViewModel}">
         <views:FriendListUI />

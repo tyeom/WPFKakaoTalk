@@ -24,6 +24,8 @@ public class FriendListViewModel : ViewModelBase
     private ICollectionView _friendListView;
     private User _myProfile;
     private ObservableCollection<User> _friendList;
+    private bool _showSearchFriend;
+    private string? _searchFriend;
 
     public FriendListViewModel(IUserService userService, IUserProfileViewerDialogService userProfileViewerDialogService)
     {
@@ -37,7 +39,13 @@ public class FriendListViewModel : ViewModelBase
 
         PropertyGroupDescription groupDescription = new PropertyGroupDescription("FriendUserType");
         FriendListView.GroupDescriptions.Add(groupDescription);
-        FriendListView = CollectionViewSource.GetDefaultView(FriendList);
+
+        if (FriendListView.CanFilter)
+        {
+            FriendListView.Filter = this.FriendSearchFilter;
+        }
+
+        WeakReferenceMessenger.Default.Register<User, string>(this, "AddFriend", this.AddFriend);
     }
 
     #region Properties
@@ -58,9 +66,59 @@ public class FriendListViewModel : ViewModelBase
         get => _friendListView;
         set => SetProperty(ref _friendListView, value);
     }
+
+    public bool ShowSearchFriend
+    {
+        get => _showSearchFriend;
+        set => SetProperty(ref _showSearchFriend, value);
+    }
+
+    public string? SearchFriend
+    {
+        get => _searchFriend;
+        set
+        {
+            SetProperty(ref _searchFriend, value);
+            FriendListView.Refresh();
+        }
+    }
     #endregion  // Properties
 
     #region Commands
+    private RelayCommand _showSearchFriendCommand;
+    public RelayCommand ShowSearchFriendCommand
+    {
+        get
+        {
+            return _showSearchFriendCommand ??
+                (_showSearchFriendCommand = new RelayCommand(() => ShowSearchFriend = true));
+        }
+    }
+
+    private RelayCommand _closeSearchFriendCommand;
+    public RelayCommand CloseSearchFriendCommand
+    {
+        get
+        {
+            return _closeSearchFriendCommand ??
+                (_closeSearchFriendCommand = new RelayCommand(() =>
+                {
+                    SearchFriend = null;
+                    ShowSearchFriend = false;
+                }));
+        }
+    }
+
+    private RelayCommand _addSearchFriendCommand;
+    public RelayCommand AddSearchFriendCommand
+    {
+        get
+        {
+            return _addSearchFriendCommand ??
+                (_addSearchFriendCommand = new RelayCommand(this.AddSearchFriendExecute));
+        }
+    }
+
     private RelayCommand<User?> _profileCommand;
     public RelayCommand<User?> ProfileCommand
     {
@@ -83,6 +141,15 @@ public class FriendListViewModel : ViewModelBase
     #endregion  // Commands
 
     #region Commands Execute Methods
+    private void AddSearchFriendExecute()
+    {
+        WeakReferenceMessenger.Default.Send(
+            new MainPopup(
+                ShellViewModel.Services.GetService(typeof(SearchFriendViewModel)) as SearchFriendViewModel
+                ) { Title = "친구 추가", Width = 330, Height = 465}
+            );
+    }
+
     private void ProfileExecute(User? user)
     {
         if (user is null)
@@ -114,6 +181,29 @@ public class FriendListViewModel : ViewModelBase
     #endregion  // Commands Execute Methods
 
     #region Methods
-    //
+    private bool FriendSearchFilter(object item)
+    {
+        if (string.IsNullOrWhiteSpace(SearchFriend) is true)
+            return true;
+
+        User? userInfo = item as User;
+        if(userInfo is not null && userInfo.Name.Contains(SearchFriend) is true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void AddFriend(object recipient, User user)
+    {
+        FriendList.Add(user);
+        FriendListView.Refresh();
+
+        // 메인 팝업 화면 닫기
+        WeakReferenceMessenger.Default.Send<object, string>(null, "CloseMainPopup");
+    }
     #endregion  // Methods
 }

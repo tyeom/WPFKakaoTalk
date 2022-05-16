@@ -23,7 +23,7 @@
                    Text="채팅"
                    FontSize="20"
                    VerticalAlignment="Bottom"
-                   Margin="10, 0, 0, 0"
+                   Margin="20, 0, 0, 0"
                    Style="{StaticResource xNanumSquare_BFont}"/>
 
         <StackPanel Grid.Row="0"
