@@ -104,20 +104,25 @@ library to use
 캡쳐 화면
 -
 
+### `로그인`
 ![image](https://user-images.githubusercontent.com/13028129/168229017-63e40d38-4b87-45bc-b040-fea457932bef.png)<br/>
-**[로그인]**
 
+
+### `잠금 화면`
 ![image](https://user-images.githubusercontent.com/13028129/168453264-f05b781f-b9ce-49da-a4ea-0f9fca887631.png)<br/>
-**[잠금 화면]**
 
+
+### `메인 환경설정`
 ![image](https://user-images.githubusercontent.com/13028129/168229251-a6136f83-1388-40b7-bc8b-fbb3b5be3c78.png)<br/>
-**[메인 환경설정 화면]**
 
+
+### `메인 환경설정 > 프로필`
 ![image](https://user-images.githubusercontent.com/13028129/168229303-30a339a1-49ee-4ef6-8dba-d1d532ad23fb.png)<br/>
-**[메인 환경설정 > 프로필]**
 
+
+### `친구 리스트`
 ![image](https://user-images.githubusercontent.com/13028129/168229352-954a75b4-0eff-474c-af10-b4c50658307c.png)<br/>
-**[친구 리스트]**
 
+
+### `채팅방 리스트`
 ![image](https://user-images.githubusercontent.com/13028129/168229381-1d8329de-3c4d-4b34-8d6d-8bd8a270695c.png)<br/>
-**[채팅방 리스트]**
