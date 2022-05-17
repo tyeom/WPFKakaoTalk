@@ -122,6 +122,10 @@ library to use
 ![image](https://user-images.githubusercontent.com/13028129/168229352-954a75b4-0eff-474c-af10-b4c50658307c.png)<br/>
 
 
+#### `친구 검색 및 친구 등록`
+![image](https://user-images.githubusercontent.com/13028129/168712827-ad47f974-ba86-46f8-ac76-db5f1bab5621.png)
+
+
 #### `프로필 보기 및 친구 이름 변경`
 ![image](https://user-images.githubusercontent.com/13028129/168711985-78ebf7d5-cd69-404d-a5e8-54fa3933665f.png)
 
