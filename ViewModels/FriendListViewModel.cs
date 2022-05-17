@@ -45,7 +45,11 @@ public class FriendListViewModel : ViewModelBase
             FriendListView.Filter = this.FriendSearchFilter;
         }
 
+        // 친구 추가 Messenger
         WeakReferenceMessenger.Default.Register<User, string>(this, "AddFriend", this.AddFriend);
+
+        // 친구 닉네임 변경 요청 Messenger
+        WeakReferenceMessenger.Default.Register<FriendListViewModel, UpdateFriendNameRequestMessage>(this, this.UpdateFriendNickNameRequest);
     }
 
     #region Properties
@@ -204,6 +208,21 @@ public class FriendListViewModel : ViewModelBase
 
         // 메인 팝업 화면 닫기
         WeakReferenceMessenger.Default.Send<object, string>(null, "CloseMainPopup");
+    }
+
+    private async void UpdateFriendNickNameRequest(object recipient, UpdateFriendNameRequestMessage requestMessage)
+    {
+        var result = await _userService.UpdateFriendNameAsync(requestMessage.User.Id, requestMessage.NewName);
+
+        if (result is true)
+        {
+            requestMessage.Reply(new UpdateFriendNickNameResponseMessage("ok", false));
+            FriendListView.Refresh();
+        }  else
+        {
+            requestMessage.Reply(new UpdateFriendNickNameResponseMessage("이름 변경 중 오류가 발생하였습니다.", true));
+            return;
+        }
     }
     #endregion  // Methods
 }

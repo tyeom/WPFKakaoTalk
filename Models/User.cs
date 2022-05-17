@@ -10,7 +10,7 @@ public record User
 {
     public Guid Id { get; init; }
 
-    public string Name { get; init; } = string.Empty;
+    public string? Name { get; set; }
 
     public string PhoneNumber { get; init; } = string.Empty;
 
@@ -18,7 +18,7 @@ public record User
 
     public string Email { get; init; } = string.Empty;
 
-    public string NickName { get; set; } = string.Empty;
+    public string? NickName { get; set; }
 
     public EFriendUserType FriendUserType { get; set; } = EFriendUserType.Friend;
 
@@ -27,6 +27,15 @@ public record User
     public IList<User> FriendList { get; set; } = new List<User>();
 
     public IList<ChattingRoom> ChattingRoomList { get; set; } = new List<ChattingRoom>();
+
+    /// <summary>
+    /// 닉네임 변경
+    /// </summary>
+    /// <param name="nickName"></param>
+    public void UpdateNickName(string? nickName)
+    {
+        NickName = nickName;
+    }
 }
 
 public record UserProfile
@@ -40,4 +49,22 @@ public record UserProfile
     /// 상태 메세지
     /// </summary>
     public string? Status { get; set; }
+
+    /// <summary>
+    /// 프로필 이미지 변경
+    /// </summary>
+    /// <param name="base64Img"></param>
+    public void UpdateUserProfile(string? base64Img)
+    {
+        UserProfileImgBase64 = base64Img;
+    }
+
+    /// <summary>
+    /// 상태 메세지 변경
+    /// </summary>
+    /// <param name="status"></param>
+    public void UpdateStatus(string? status)
+    {
+        Status = status;
+    }
 }

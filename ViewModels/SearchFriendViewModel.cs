@@ -66,7 +66,7 @@ public class SearchFriendViewModel : ViewModelBase
     #region Commands Execute Methods
     private async Task SearchFriendExecute(string search)
     {
-        var foundFriendUser = await _userService.FindFriend(search);
+        var foundFriendUser = await _userService.FindFriendAsync(search);
         if (foundFriendUser is not null)
             SearchUser = foundFriendUser;
     }

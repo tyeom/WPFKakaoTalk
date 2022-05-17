@@ -41,7 +41,15 @@ public interface IUserService
     /// </summary>
     /// <param name="email"></param>
     /// <returns></returns>
-    Task<User?> FindFriend(string email);
+    Task<User?> FindFriendAsync(string email);
+
+    /// <summary>
+    /// 친구 닉네임 변경
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="nickName"></param>
+    /// <returns>친구 닉네임 변경 요청 오류 여부</returns>
+    Task<bool> UpdateFriendNameAsync(Guid id, string? newName);
 
     void KeepAlive();
 
@@ -108,9 +116,9 @@ public class UserService : IUserService
         return chattingRoomList;
     }
 
-    public async Task<User?> FindFriend(string email)
+    public async Task<User?> FindFriendAsync(string email)
     {
-        // TODO-Server : id 이용
+        // TODO-Server : email 이용
         // TODO-Server : 서버에 친구 검색 정보 요청
 
         return await Task.Run(() =>
@@ -140,6 +148,19 @@ public class UserService : IUserService
                 return null;
             }
         });
+    }
+
+    public async Task<bool> UpdateFriendNameAsync(Guid id, string? newName)
+    {
+        // TODO-Server : id 이용
+        // TODO-Server : 등록된 친구의 이름 변경 요청
+        return true;
+    }
+
+    public bool UserLogout()
+    {
+        // TODO-Server : 사용자 로그아웃시 서버에 로그아웃 요청을 하여 서버측 세션 정리
+        return true;
     }
 
     public void KeepAlive()
@@ -194,11 +215,5 @@ public class UserService : IUserService
 
             return chattingRoom;
         });
-    }
-
-    public bool UserLogout()
-    {
-        // TODO-Server : 사용자 로그아웃시 서버에 로그아웃 요청을 하여 서버측 세션 정리
-        return true;
     }
 }

@@ -71,19 +71,95 @@
         </Border>
         <!--프로필 사진 표시 END-->
 
-        <TextBlock Grid.Row="2"
-                   Text="{Binding User.NickName}"
-                   Foreground="#FFFFFFFF"
-                   FontSize="17"
-                   HorizontalAlignment="Center"
-                   Margin="0, 0, 0, 0"
-                   Style="{StaticResource xNanumSquareFont}"/>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0, 15, 0, 0">
+            <TextBlock Text="{Binding User.Name}"
+                       Foreground="#FFFFFFFF"
+                       FontSize="17"
+                       HorizontalAlignment="Center"
+                       Margin="0, 0, 10, 0"
+                       Style="{StaticResource xNanumSquareFont}"/>
+            <controls:IconButton IconImage="/Views;component/Images/profile_update_nickname_ico.png"
+                                 Cursor="Hand"
+                                 Command="{Binding ShowUpdateNameCommand}"/>
+        </StackPanel>
         <TextBlock Grid.Row="3"
                    Text="{Binding User.UserProfile.Status}"
                    Foreground="#FFFFFFFF"
                    FontSize="15"
                    HorizontalAlignment="Center"
-                   Margin="0, 0, 0, 0"
+                   Margin="0, 5, 0, 0"
                    Style="{StaticResource xNanumSquareFont}"/>
+
+        <!--Update Name Layout Popup Grid-->
+        <Grid x:Name="xUpdateNamePopupGrid"
+              Grid.Row="0"
+              Grid.RowSpan="5"
+              VerticalAlignment="Bottom"
+              Height="150"
+              MouseMove="xUpdateNamePopupGrid_MouseMove"
+              Visibility="{Binding ShowUpdateName, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Background="#FFFFFFFF"
+                    BorderThickness="1"
+                    CornerRadius="5, 5, 0, 0" />
+
+            <Grid x:Name="xTitleGrid"
+                  Grid.Row="0"
+                  Background="Transparent">
+                <controls:IconButton HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"
+                                     IconImage="/Views;component/Images/titlebar_btn_close_bl.png"
+                                     Command="{Binding CloseUpdateNameCommand}"
+                                     Cursor="Hand"
+                                     Margin="0, 5, 0, 0"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                
+                <TextBox Grid.Column="0"
+                         Text="{Binding UpdateName, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="20"
+                         VerticalAlignment="Top"
+                         Height="23"
+                         Margin="20, 19, 5, 0"
+                         Style="{StaticResource sPlatTextBox}"/>
+                <TextBlock Grid.Column="1"
+                           Foreground="#FF999999"
+                           VerticalAlignment="Top"
+                           Text="{Binding UpdateName, Converter={StaticResource InputStrLengthConverter}, ConverterParameter=20}"
+                           Margin="0, 19, 5, 0"
+                           Style="{StaticResource xNanumSquareFont}"/>
+                <controls:IconButton Grid.Column="2"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Top"
+                                     IconImage="/Views;component/Images/confirm_ico.png"
+                                     Command="{Binding UpdateNameCommand}"
+                                     Cursor="Hand"
+                                     Margin="0, 15, 10, 0"/>
+
+                <Border Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        BorderBrush="#FF000000"
+                        BorderThickness="0.5"
+                        VerticalAlignment="Top"
+                        Height="26"
+                        Margin="20, 15, 20, 0" />
+            </Grid>
+        </Grid>
+        <!--Update Name Layout Popup Grid END-->
     </Grid>
 </Window>

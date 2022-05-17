@@ -81,6 +81,7 @@
     <None Remove="Images\chat_Select_ico.png" />
     <None Remove="Images\chat_UnSelect_ico.png" />
     <None Remove="Images\common_icon_alert.png" />
+    <None Remove="Images\confirm_ico.png" />
     <None Remove="Images\friend_ico_search.png" />
     <None Remove="Images\friend_ico_search_on.png" />
     <None Remove="Images\friend_Select_ico.png" />
@@ -107,6 +108,7 @@
     <None Remove="Images\moim_chatbubble_ico_post.png" />
     <None Remove="Images\more_icon_info_timechat.png" />
     <None Remove="Images\profile_img_musicnoimg40.png" />
+    <None Remove="Images\profile_update_nickname_ico.png" />
     <None Remove="Images\searchbar_ico_search.png" />
     <None Remove="Images\setting_Select_ico.png" />
     <None Remove="Images\setting_UnSelect_ico.png" />
@@ -138,6 +140,7 @@
     <Resource Include="Images\chatting_ico_openchat_on.png" />
     <Resource Include="Images\chat_Select_ico.png" />
     <Resource Include="Images\chat_UnSelect_ico.png" />
+    <Resource Include="Images\confirm_ico.png" />
     <Resource Include="Images\friend_ico_search.png" />
     <Resource Include="Images\friend_ico_search_on.png" />
     <Resource Include="Images\friend_Select_ico.png" />
@@ -236,6 +239,7 @@
     <Resource Include="Images\moim_chatbubble_ico_post.png" />
     <Resource Include="Images\more_icon_info_timechat.png" />
     <Resource Include="Images\profile_img_musicnoimg40.png" />
+    <Resource Include="Images\profile_update_nickname_ico.png" />
     <Resource Include="Images\searchbar_ico_search.png" />
     <Resource Include="Images\setting_Select_ico.png" />
     <Resource Include="Images\setting_UnSelect_ico.png" />

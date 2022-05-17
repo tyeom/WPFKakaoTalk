@@ -37,4 +37,9 @@ public partial class UserProfileViewWindow : Window, IUserProfileViewDialog
         this.Hide();
         this.DataContext = null;
     }
+
+    private void xUpdateNamePopupGrid_MouseMove(object sender, MouseEventArgs e)
+    {
+        e.Handled = true;
+    }
 }
