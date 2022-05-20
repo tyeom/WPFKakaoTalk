@@ -103,23 +103,27 @@ library to use
 -
 
 #### `로그인`
-![image](https://user-images.githubusercontent.com/13028129/168229017-63e40d38-4b87-45bc-b040-fea457932bef.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168229017-63e40d38-4b87-45bc-b040-fea457932bef.png)
 
 
 #### `잠금 화면`
-![image](https://user-images.githubusercontent.com/13028129/168453264-f05b781f-b9ce-49da-a4ea-0f9fca887631.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168453264-f05b781f-b9ce-49da-a4ea-0f9fca887631.png)
 
 
 #### `메인 환경설정`
-![image](https://user-images.githubusercontent.com/13028129/168229251-a6136f83-1388-40b7-bc8b-fbb3b5be3c78.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168229251-a6136f83-1388-40b7-bc8b-fbb3b5be3c78.png)
 
 
 #### `메인 환경설정 > 프로필`
-![image](https://user-images.githubusercontent.com/13028129/168229303-30a339a1-49ee-4ef6-8dba-d1d532ad23fb.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168229303-30a339a1-49ee-4ef6-8dba-d1d532ad23fb.png)
 
 
 #### `친구 리스트`
-![image](https://user-images.githubusercontent.com/13028129/168229352-954a75b4-0eff-474c-af10-b4c50658307c.png)<br/>
+![image](https://user-images.githubusercontent.com/13028129/168229352-954a75b4-0eff-474c-af10-b4c50658307c.png)
+
+
+#### `친구 검색`
+![wpfKakaoTalk_FriendFilter](https://user-images.githubusercontent.com/13028129/169466846-1fc9317e-90a0-44aa-bf2e-88e138ca7015.gif)
 
 
 #### `친구 검색 및 친구 등록`
