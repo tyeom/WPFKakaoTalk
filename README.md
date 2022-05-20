@@ -58,14 +58,14 @@ Model 의존 참조 없음 (단독 모듈)
 - 친구 리스트 화면
 - 친구 검색 및 추가
 - 채팅방 리스트 화면
+- 채팅 화면
+- 실제 채팅 기능 [서버와 통신 X]
+- 채팅 화면에서 Infinite scroll 구현
 
 앞으로 구현 기능
 -
 
-- 채팅방 화면
-- 실제 채팅 기능 [서버와 통신 X]
 - 채팅 목록 캡쳐 해서 내보내기 기능
-- 채팅 화면에서 Infinite scroll 구현
 - 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
 
 ***
@@ -132,3 +132,11 @@ library to use
 
 #### `채팅방 리스트`
 ![image](https://user-images.githubusercontent.com/13028129/168229381-1d8329de-3c4d-4b34-8d6d-8bd8a270695c.png)<br/>
+
+
+#### `채팅1`
+![wpfKakaoTalk_Chat](https://user-images.githubusercontent.com/13028129/169466176-c6977249-462d-4057-a35a-16a1e5fe8654.gif)
+
+
+#### `채팅2`
+![image](https://user-images.githubusercontent.com/13028129/169466073-f4e1e605-eaab-4c80-9c8c-6a59e772aa05.png)
