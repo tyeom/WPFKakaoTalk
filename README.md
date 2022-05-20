@@ -78,6 +78,9 @@ This is a KakaoTalk PC version clone project with WPF<br/>
 This is a WPF project that implements pure client functions without a separate communication function with the server.<br/>
 We set the goal of implementation so that it can actually operate as much as possible other than server communication.
 Made.
+<br/><br/>
+through this project
+You can learn basic WPF syntax, MVVM architecture pattern.
 
 Environment
 -
