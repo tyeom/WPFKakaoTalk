@@ -52,6 +52,17 @@ public static class CollectionExtensions
         }
     }
 
+    public static void AddRangeFirst<T>(this ObservableCollection<T> coll, IEnumerable<T> collection)
+    {
+        if (collection == null) return;
+        // TODO : 시간복잡도 로직 개선 필요
+        var reverseCollection = collection.Reverse();
+        foreach (T item in reverseCollection)
+        {
+            coll.Insert(0, item);
+        }
+    }
+
     public static int RemoveAll<T>(this ObservableCollection<T> coll, Func<T, bool> condition)
     {
         var itemsToRemove = coll.Where(condition).ToList();

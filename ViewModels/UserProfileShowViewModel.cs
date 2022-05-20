@@ -111,7 +111,9 @@ public class UserProfileShowViewModel : ViewModelBase
         }
         else
         {
-            User.Name = UpdateName;
+            User.UpdateName(UpdateName);
+            OnPropertyChanged("User");
+            WeakReferenceMessenger.Default.Send<UpdateUserInfo>(new UpdateUserInfo(User));
         }
     }
     #endregion  // Commands Execute Methods
@@ -120,6 +122,12 @@ public class UserProfileShowViewModel : ViewModelBase
     private void SetUserInfo(object recipient, UserInfo userInfo)
     {
         //
+    }
+
+    public override void Cleanup()
+    {
+        base.Cleanup();
+        WeakReferenceMessenger.Default.UnregisterAll(this);
     }
     #endregion  // Methods
 }

@@ -55,7 +55,11 @@ public enum EChattingMsgType
     /// <summary>
     /// 공지 메세지
     /// </summary>
-    Notice
+    Notice,
+    /// <summary>
+    /// 이미지, 사진
+    /// </summary>
+    Photo,
 }
 
 /// <summary>
@@ -66,7 +70,7 @@ public enum EChattingSpeechType
     /// <summary>
     /// 나
     /// </summary>
-    Me,
+    Mine,
     /// <summary>
     /// 상대방
     /// </summary>

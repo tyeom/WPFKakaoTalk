@@ -180,7 +180,40 @@ public class FriendListViewModel : ViewModelBase
 
     private void ChatExecute(User? user)
     {
-        //
+        var chattingViewerDialogService =
+            ShellViewModel.Services.GetService(typeof(IChattingViewerDialogService)) as ChattingViewerDialogService;
+
+        var chatRoom = _userService.UserInfo.ChattingRoomList
+            // 1:1 채팅 목록 검색
+            .Where(p => p.ChattingType == Common.Enums.EChattingRoomType.PersonalChat)
+            // 1:1 채팅 목록에서 상대방 친구와 채팅한 내역의 채팅방 검색
+            .FirstOrDefault(p => p.user![1].Id == user!.Id);
+
+        if (chatRoom is null)
+        {
+            var chattingRoom = new ChattingRoom() {
+                Id = Guid.NewGuid(),
+                user = new() {_userService.UserInfo, user!},
+                ThumbnailBase64 = user.UserProfile.UserProfileImgBase64,
+                ChattingType = Common.Enums.EChattingRoomType.PersonalChat
+            };
+            chattingViewerDialogService!.SetVM(new ChattingViewModel(chattingRoom));
+            chattingViewerDialogService!.Dialog.Show();
+
+            _userService.UserInfo.ChattingRoomList.Add(chattingRoom);
+        }
+        else
+        {
+            if (chattingViewerDialogService!.CheckActivate(chatRoom!.Id.ToString()) is true)
+            {
+                // CheckActivate에서 해당 채팅 창 활성화
+            }
+            else
+            {
+                chattingViewerDialogService!.SetVM(new ChattingViewModel(chatRoom));
+                chattingViewerDialogService!.Dialog.Show();
+            }
+        }
     }
     #endregion  // Commands Execute Methods
 
@@ -223,6 +256,12 @@ public class FriendListViewModel : ViewModelBase
             requestMessage.Reply(new UpdateFriendNickNameResponseMessage("이름 변경 중 오류가 발생하였습니다.", true));
             return;
         }
+    }
+
+    public override void Cleanup()
+    {
+        base.Cleanup();
+        WeakReferenceMessenger.Default.UnregisterAll(this);
     }
     #endregion  // Methods
 }

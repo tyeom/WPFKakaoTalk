@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace Common.Controls;
 
-public class ChattingListControl : ItemsControl
+public class ChattingListControl : ListBox
 {
     public ChattingListControl()
     {
@@ -25,7 +25,7 @@ public class ChattingListControl : ItemsControl
 }
 
 [TemplatePart(Name = ChatInfoPartName, Type = typeof(Grid))]
-public class ChattingListItemControl : ContentControl
+public class ChattingListItemControl : Control
 {
     private const string ChatInfoPartName = "PART_ChatInfo";
 

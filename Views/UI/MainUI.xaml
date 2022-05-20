@@ -76,6 +76,7 @@
                                                   IConImage="/Views;component/Images/friend_UnSelect_ico.png"
                                                   MouseOverIConImage="/Views;component/Images/friend_UnSelect_ico.png"
                                                   SelectedIConImage="/Views;component/Images/friend_Select_ico.png"
+                                                  Cursor="Hand"
                                                   IsChecked="True"
                                                   Command="{Binding SideMenuCommand}"
                                                   CommandParameter="FriendList"/>
@@ -84,12 +85,14 @@
                                                   IConImage="/Views;component/Images/chat_UnSelect_ico.png"
                                                   MouseOverIConImage="/Views;component/Images/chat_UnSelect_ico.png"
                                                   SelectedIConImage="/Views;component/Images/chat_Select_ico.png"
+                                                  Cursor="Hand"
                                                   Command="{Binding SideMenuCommand}"
                                                   CommandParameter="ChattingList"/>
                 <controls:MainSideMenuItemControl ToolTip="더보기"
                                                   IConImage="/Views;component/Images/setting_UnSelect_ico.png"
                                                   MouseOverIConImage="/Views;component/Images/setting_UnSelect_ico.png"
                                                   SelectedIConImage="/Views;component/Images/setting_Select_ico.png"
+                                                  Cursor="Hand"
                                                   Command="{Binding SideMenuCommand}"
                                                   CommandParameter="MoreMenu"/>
             </controls:MainSideMenuControl>

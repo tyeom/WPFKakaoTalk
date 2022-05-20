@@ -204,6 +204,7 @@
                     Height="45"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=xPassword, Path=Tag}"
+                    Cursor="Hand"
                     Margin="50, 0, 50, 0"
                     Style="{StaticResource sLoginButtonStyle}"/>
         </Grid>

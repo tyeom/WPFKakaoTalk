@@ -12,20 +12,16 @@ public class EnumToVisibilityConverter : IValueConverter
         object parameter,
         System.Globalization.CultureInfo culture)
     {
-        //string strEnum = value.ToString();
+        string strEnum = value.ToString();
 
-        //if (parameter != null && parameter.ToString().Equals(strEnum))
-        //{
-        //    return Visibility.Visible;
-        //}
-        //else
-        //{
-        //    return Visibility.Collapsed;
-        //}
-        if ((bool)value == true)
+        if (parameter != null && parameter.ToString().Equals(strEnum))
+        {
             return Visibility.Visible;
+        }
         else
+        {
             return Visibility.Collapsed;
+        }
     }
 
     public object ConvertBack(

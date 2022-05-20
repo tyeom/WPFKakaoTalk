@@ -17,6 +17,11 @@ public abstract class ViewModelBase : ObservableObject
     }
 
     public IView View { get; private set; }
+
+    public virtual void Cleanup()
+    {
+        //
+    }
 }
 
 // 특정 IView 타입을 사용하는 경우 제네릭 ViewModelBase 사용
@@ -28,4 +33,9 @@ public abstract class ViewModelBase<T> : ObservableObject where T : IView
     }
 
     public T View { get; private set; }
+
+    public virtual void Cleanup()
+    {
+        //
+    }
 }

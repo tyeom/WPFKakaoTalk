@@ -1,4 +1,5 @@
 ﻿using Common.Enums;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace Models;
 
-public record ChattingRoom
+public class ChattingRoom : ObservableObject
 {
+    private int _chatCount;
+    private DateTime? _lastChatTime;
+
     public Guid Id { get; init; }
 
     public List<User>? user { get; set; }
@@ -17,9 +21,17 @@ public record ChattingRoom
 
     public string? LastChatMsg { get; set; }
 
-    public int ChatCount { get; set; }
+    public int ChatCount
+    {
+        get => _chatCount;
+        set => SetProperty(ref _chatCount, value);
+    }
 
-    public DateTime? LastChatTime { get; set; }
+    public DateTime? LastChatTime
+    {
+        get => _lastChatTime;
+        set => SetProperty(ref _lastChatTime, value);
+    }
 
     /// <summary>
     /// 알림 설정 여부
@@ -29,11 +41,58 @@ public record ChattingRoom
     public EChattingRoomType ChattingType { get; set; } = EChattingRoomType.PersonalChat;
 }
 
-public record Chatting
+public class Chatting : ObservableObject
 {
-    public User user { get; set; } = new User();
+    private bool _showProfileImg;
+    private bool _showName;
+    private bool _showMineDateTime;
+    private bool _showOpponentDateTime;
+    public User _user;
+
+    public Guid Id { get; set; }
+
+    public User User
+    {
+        get => _user;
+        set => SetProperty(ref _user, value);
+    }
+
+    public string? Message { get; set; }
+
+    public string? ImageMessageUri { get; set; }
 
     public EChattingMsgType ChattingMsgType { get; set; } = EChattingMsgType.Normal;
 
-    public EChattingSpeechType ChattingSpeechType { get; set; } = EChattingSpeechType.Me;
+    public EChattingSpeechType ChattingSpeechType { get; set; } = EChattingSpeechType.Mine;
+
+    public bool ShowProfileImg
+    {
+        get => _showProfileImg;
+        set => SetProperty(ref _showProfileImg, value);
+    }
+
+    public bool ShowName
+    {
+        get => _showName;
+        set => SetProperty(ref _showName, value);
+    }
+
+    public bool ShowMineDateTime
+    {
+        get => _showMineDateTime;
+        set => SetProperty(ref _showMineDateTime, value);
+    }
+
+    public bool ShowOpponentDateTime
+    {
+        get => _showOpponentDateTime;
+        set => SetProperty(ref _showOpponentDateTime, value);
+    }
+
+    public DateTime MessageDateTime { get; set; }
+
+    public void NotifyPropertyChanged(string propertyName)
+    {
+        OnPropertyChanged(propertyName);
+    }
 }

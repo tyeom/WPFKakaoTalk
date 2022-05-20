@@ -193,14 +193,14 @@
                               Click="MaximizeToggleButton_Click"
                               Style="{DynamicResource sToggleButton_Restore}"/>
                 <Button x:Name="xCloseButton"
-                    IsTabStop="False"
-                    Width="15"
-                    Height="15"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Click="CloseButton_Click"
-                    Margin="0, 0, 5, 0"
-                    Style="{DynamicResource sButton_Close}"/>
+                        IsTabStop="False"
+                        Width="15"
+                        Height="15"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Click="CloseButton_Click"
+                        Margin="0, 0, 5, 0"
+                        Style="{DynamicResource sButton_Close}"/>
             </StackPanel>
         </Grid>
         <!--상단 타이틀바 END-->

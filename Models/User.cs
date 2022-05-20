@@ -29,12 +29,12 @@ public record User
     public IList<ChattingRoom> ChattingRoomList { get; set; } = new List<ChattingRoom>();
 
     /// <summary>
-    /// 닉네임 변경
+    /// 이름 변경
     /// </summary>
-    /// <param name="nickName"></param>
-    public void UpdateNickName(string? nickName)
+    /// <param name="name"></param>
+    public void UpdateName(string? name)
     {
-        NickName = nickName;
+        Name = name;
     }
 }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -25,24 +20,34 @@ public class TextBoxBehavior : DependencyObject
 
                     if(((bool)e.NewValue) is true)
                     {
-                        textBox.KeyDown += TextBox_KeyDown;
+                        textBox.PreviewKeyDown += TextBox_PreviewKeyDown;
                     }
                     else
                     {
-                        textBox.KeyDown -= TextBox_KeyDown;
+                        textBox.PreviewKeyDown -= TextBox_PreviewKeyDown;
                     }
                 }
                 ));
 
-    private static void TextBox_KeyDown(object sender, KeyEventArgs e)
+    private static void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Enter)
+        System.Diagnostics.Debug.WriteLine(e.Key.ToString());
+        if (e.Key == Key.Enter && ( Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift) ))
+        {
+            TextBox textBox = sender as TextBox;
+            int tmpCaretIndex = textBox.CaretIndex;
+            textBox.Text = textBox.Text.Insert(textBox.CaretIndex, Environment.NewLine);
+            textBox.CaretIndex = tmpCaretIndex + 1;
+        }
+        else if (e.Key == Key.Enter)
         {
             TextBox textBox = sender as TextBox;
             ICommand acceptsEnterCommand = GetAcceptsEnterCommand(textBox);
 
             if(acceptsEnterCommand is not null)
             acceptsEnterCommand.Execute(textBox.Text);
+
+            e.Handled = true;
         }
     }
 

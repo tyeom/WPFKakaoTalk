@@ -269,8 +269,11 @@ public class MainViewModel : ViewModelBase
             case "ChattingList":
                 ContentViewModel = ShellViewModel.Services.GetService(typeof(ChattingListViewModel)) as ChattingListViewModel;
                 break;
+            case "MoreMenu":
+                ContentViewModel = ShellViewModel.Services.GetService(typeof(MoreMenuViewModel)) as MoreMenuViewModel;
+                break;
             default:
-                ContentViewModel = ShellViewModel.Services.GetService(typeof(ChattingListViewModel)) as ChattingListViewModel;
+                throw new Exception("Side menu를 찾을 수 없습니다.");
                 break;
         }
     }

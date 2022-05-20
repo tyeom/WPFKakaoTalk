@@ -265,15 +265,42 @@
                                        MyProfileCommand="{Binding ProfileCommand}"
                                        MyName="{Binding MyProfile.Name}"
                                        StatusMsg="{Binding MyProfile.UserProfile.Status}">
+                <controls:FrindListControl.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid x:Name="xContentGrid">
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="xContentGrid"
+                                                    Property="Background"
+                                                    Value="#FFF8F8F8" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="xContentGrid"
+                                                    Property="Background"
+                                                    Value="#FFF2F2F2"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </controls:FrindListControl.ItemContainerStyle>
                 <controls:FrindListControl.ItemTemplate>
                     <DataTemplate>
-                        <Border HorizontalAlignment="Stretch">
-                            <controls:FrindListItemControl Id="{Binding Id}"
-                                                           FriendInfoCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ProfileCommand}"
-                                                           FriendInfoCommandParameter="{Binding .}"
-                                                           FriendChatCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ChatCommand}"
-                                                           FriendChatCommandParameter="{Binding .}"/>
-                        </Border>
+                        <controls:FrindListItemControl Id="{Binding Id}"
+                                                       FriendInfoCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ProfileCommand}"
+                                                       FriendInfoCommandParameter="{Binding .}"
+                                                       FriendChatCommand="{Binding ElementName=xFriendListUI, Path=DataContext.ChatCommand}"
+                                                       FriendChatCommandParameter="{Binding .}"/>
                     </DataTemplate>
                 </controls:FrindListControl.ItemTemplate>
                 
@@ -286,7 +313,6 @@
                                         <ControlTemplate>
                                             <Expander IsExpanded="True">
                                                 
-
                                                 <!--Expander 헤더 스타일-->
                                                 <Expander.Header>
                                                     <StackPanel Orientation="Horizontal"

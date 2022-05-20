@@ -42,6 +42,8 @@
             <converters:StrLengthConverter x:Key="StrLengthConverter" />
             <converters:InputStrLengthConverter x:Key="InputStrLengthConverter" />
             <converters:Base64ToBitmapImageConverter x:Key="Base64ToBitmapImageConverter"/>
+            <converters:TextBoxHeightConverter x:Key="TextBoxHeightConverter"/>
+            <converters:DoubleConverter x:Key="DoubleConverter"/>
             <!--Converters End-->
 
             <!--Visual-->
@@ -294,8 +296,8 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Border Name="xBorder"
-                                BorderThickness="0"
-                                BorderBrush="Transparent">
+                                    BorderThickness="0"
+                                    BorderBrush="Transparent">
                                 <ContentPresenter HorizontalAlignment="Center"
                                                   VerticalAlignment="Center" />
                             </Border>
@@ -312,6 +314,50 @@
                                     <Setter TargetName="xBorder"
                                             Property="Background"
                                             Value="#FFFEE500"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="TextBlock.Foreground"
+                                            Value="#FF000000"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFFADA0A"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="sYellowBorderButtonStyle" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="xBorder"
+                                    BorderThickness="1"
+                                    CornerRadius="2">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFF0F0F0"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="BorderBrush"
+                                            Value="#FFDADADA"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="TextBlock.Foreground"
+                                            Value="#FFB3B3B3"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="True">
+                                    <Setter TargetName="xBorder"
+                                            Property="Background"
+                                            Value="#FFFEE500"/>
+                                    <Setter TargetName="xBorder"
+                                            Property="BorderBrush"
+                                            Value="#FFE0CC1B"/>
                                     <Setter TargetName="xBorder"
                                             Property="TextBlock.Foreground"
                                             Value="#FF000000"/>
@@ -348,7 +394,7 @@
             </Style>
             <!--TextBlock Font Style END-->
 
-            <!--TextBox Font Style-->
+            <!--TextBox Style-->
             <Style x:Key="sPlatTextBox" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
                 <Setter Property="OverridesDefaultStyle" Value="True" />
                 <Setter Property="Template">
@@ -358,6 +404,19 @@
                                 <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
                             </Border>
                         </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FocusVisualStyle">
+                    <Setter.Value>
+                        <Style>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -374,7 +433,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--TextBox Font Style END-->
+            <!--TextBox Style END-->
 
             <!--PasswordBox Font Style-->
             <Style x:Key="sPlatPasswordBox" BasedOn="{x:Null}" TargetType="{x:Type PasswordBox}">
@@ -601,6 +660,79 @@
                 </Setter>
             </Style>
             <!--ComboBoxItem Style END-->
+
+            <!--Slider Style-->
+            <Style x:Key="SliderRepeatButtonStyleKey" TargetType="{x:Type RepeatButton}">
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="Focusable" Value="false" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RepeatButton}">
+                            <Rectangle Fill="Transparent" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="HorizontalSliderThumbStyleKey" TargetType="{x:Type Thumb}">
+                <Setter Property="Width" Value="14" />
+                <Setter Property="Height" Value="14" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="Focusable" Value="false" />
+                <Setter Property="Foreground" Value="Gray" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Ellipse StrokeThickness="0.8" Stroke="#FFD8D8D8" Fill="#FFFFFFFF" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="sRepeatSlider" TargetType="{x:Type Slider}">
+                <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="#FFD8D8D8" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Slider}">
+                            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition MinHeight="{TemplateBinding MinHeight}" Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TickBar Grid.Row="0" Height="4" Fill="{TemplateBinding Foreground}" Placement="Top" Visibility="Collapsed" />
+                                    <TickBar Grid.Row="2" Height="4" Fill="{TemplateBinding Foreground}" Placement="Bottom" Visibility="Collapsed" />
+                                    <Border Grid.Row="1" Margin="5,0" Height="2" CornerRadius="1" VerticalAlignment="center">
+                                        <Grid>
+                                            <Border CornerRadius="0.5" Background="#FFC9C9C9" Opacity="0.215" />
+                                            <Border Margin="0 0 0.3 0.3" CornerRadius="0.5" Background="#FFBDBDBD" Opacity="0.715" />
+                                        </Grid>
+                                    </Border>
+                                    <Track Name="PART_Track" Grid.Row="1">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource SliderRepeatButtonStyleKey}" Command="{x:Static Slider.DecreaseLarge}" />
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource SliderRepeatButtonStyleKey}" Command="{x:Static Slider.IncreaseLarge}" />
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource HorizontalSliderThumbStyleKey}" />
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--Slider Style END-->
 
         </ResourceDictionary>
     </Application.Resources>

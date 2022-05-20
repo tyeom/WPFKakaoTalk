@@ -5,7 +5,9 @@
                     xmlns:converters="clr-namespace:Common.Converters">
     <!--Converters Start-->
     <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
     <converters:Base64ToBitmapImageConverter x:Key="Base64ToBitmapImageConverter"/>
+    <!--Converters End-->
 
     <Style TargetType="{x:Type ct:ImageButton}">
         <Setter Property="Template">
@@ -262,9 +264,9 @@
                                 </Button.Style>
                                 <Border Margin="0,0,0,0">
                                     <Ellipse Width="60"
-                                         Height="60"
-                                         StrokeThickness="0"
-                                         Margin="0,0,0,0">
+                                             Height="60"
+                                             StrokeThickness="0"
+                                             Margin="0,0,0,0">
                                         <Ellipse.Fill>
                                             <ImageBrush ImageSource="{Binding ProfileImg, RelativeSource={RelativeSource TemplatedParent}}" />
                                         </Ellipse.Fill>
@@ -311,16 +313,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ct:FrindListItemControl}">
                     <Grid x:Name="xFriendInfoItemGrid"
+                          HorizontalAlignment="Stretch"
                           Margin="10, 0, 0, 10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
-                        <Border x:Name="xFriendInfoItemBorder"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"/>
-
                         <Button x:Name="PART_Profile"
                                 Grid.Column="0"
                                 Width="50"
@@ -375,14 +373,6 @@
                                        Margin="10, 0, 0, 0"/>
                         </Grid>
                     </Grid>
-
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="xFriendInfoItemBorder"
-                                    Property="Background"
-                                    Value="#FFD2D1D1" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -407,16 +397,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ct:ChattingListItemControl}">
                     <Grid x:Name="PART_ChatInfo"
+                          HorizontalAlignment="Stretch"
+                          Background="Transparent"
                           Margin="10, 0, 0, 10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
-                        <Border x:Name="xChattingRoomItemBorder"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"/>
 
                         <!--채팅방 썸네일 표시-->
                         <Border Grid.Column="0"
@@ -457,7 +445,7 @@
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
                                    Foreground="#FF999999"
-                                   Text="{Binding LastChatTime, StringFormat=tt H:mm}"
+                                   Text="{Binding LastChatTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
                                    FontSize="12"
                                    Margin="0, 0, 10, 0"/>
 
@@ -489,16 +477,184 @@
                                        FontFamily="/MainEntry;component/Fonts/#나눔스퀘어 Bold" />
                         </Border>
                         <!--뱃지 END-->
-                        
-                    </Grid>
 
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="xChattingRoomItemBorder"
-                                    Property="Background"
-                                    Value="#FFD2D1D1" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ct:ChattingMessageListControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ct:ChattingMessageListControl}">
+                    <Grid Background="{TemplateBinding Background}"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Margin="20, 5, 0, 5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="PART_ChatListScrollViewer"
+                                      Grid.Row="0"
+                                      Grid.RowSpan="2"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      HorizontalAlignment="Stretch"
+                                      HorizontalContentAlignment="Stretch"
+                                      VerticalScrollBarVisibility="Visible"
+                                      Margin="0, 0, 0, 0">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+
+                        <Button x:Name="PART_ScrollIntoBottomBtn"
+                                Grid.Row="1"
+                                HorizontalAlignment="Right"
+                                Cursor="Hand"
+                                Margin="0, 0, 20, 10">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Name="border" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                            <Viewbox Width="35"
+                                     Height="35">
+                                <Path Fill="#FF6C6E71"
+                                      Data="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M7,10L12,15L17,10H7Z"/>
+                            </Viewbox>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ct:ChattingMessageControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ct:ChattingMessageControl}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--프로필 사진 표시-->
+                        <Button x:Name="PART_Profile"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                VerticalAlignment="Top"
+                                Cursor="Hand"
+                                Margin="0,0,0,0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Name="border" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowProfileImg}" Value="False">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Border>
+                                <Rectangle Width="40"
+                                           Height="42"
+                                           StrokeThickness="0"
+                                           RadiusX="35"
+                                           RadiusY="40"
+                                           Margin="0,0,0,0">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding User.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}"
+                                                    Stretch="Fill" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Border>
+                        </Button>
+                        <!--프로필 사진 표시 END-->
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
+                                   Visibility="{Binding ShowMineDateTime, Converter={StaticResource BoolToVisConverter}}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0, 0, -5, 0"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="0"
+                                   Visibility="{Binding ShowName, Converter={StaticResource BoolToVisConverter}}"
+                                   Text="{Binding User.Name}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="10, 0, 0, 10"/>
+
+                        <Border Grid.Column="1"
+                                Grid.Row="1"
+                                Background="#FFFFFFFF"
+                                CornerRadius="2"
+                                MinWidth="33"
+                                MinHeight="33"
+                                Padding="10, 0, 10, 0"
+                                Margin="10, 0, 0, 0">
+                            <TextBox Text="{Binding Message}"
+                                     FontSize="12"
+                                     VerticalAlignment="Center"
+                                     IsReadOnly="True"
+                                     Margin="0, 0, 0, 0">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                                                    <Border BorderBrush="#FFA5A3A3" BorderThickness="0">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="1"
+                                   Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
+                                   Visibility="{Binding ShowOpponentDateTime, Converter={StaticResource BoolToVisConverter}}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Margin="5, 0, 0, 0"/>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

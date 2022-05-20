@@ -35,3 +35,14 @@ public interface IUserProfileViewDialog
 
     void Close();
 }
+
+public interface IChattingViewDialog
+{
+    object? DataContext { get; set; }
+
+    bool Activate();
+
+    void Show();
+
+    Action CloseCallback { get; set; }
+}

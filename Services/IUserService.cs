@@ -172,7 +172,7 @@ public class UserService : IUserService
     {
         return await Task.Run(() =>
         {
-            Thread.Sleep(3000);  // 로딩 표시 fake
+            Thread.Sleep(1700);  // 로딩 표시 fake
 
             UserProfile profile = new UserProfile()
             {

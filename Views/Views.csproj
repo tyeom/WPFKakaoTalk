@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Images\add_friend_ico.png" />
     <None Remove="Images\add_friend_ico_on.png" />
+    <None Remove="Images\attachments_ico.png" />
     <None Remove="Images\badge_mention.png" />
     <None Remove="Images\birthday_img_placeholder.png" />
     <None Remove="Images\btn_character_ben.png" />
@@ -134,6 +135,7 @@
   <ItemGroup>
     <Resource Include="Images\add_friend_ico.png" />
     <Resource Include="Images\add_friend_ico_on.png" />
+    <Resource Include="Images\attachments_ico.png" />
     <Resource Include="Images\chatting_ico_newchat.png" />
     <Resource Include="Images\chatting_ico_newchat_on.png" />
     <Resource Include="Images\chatting_ico_openchat.png" />

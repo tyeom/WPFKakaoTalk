@@ -29,7 +29,13 @@
     <Compile Update="UI\MainUI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI\MoreMenuUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\SearchFriendPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\ChattingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\PopWindow.xaml.cs">
@@ -67,7 +73,13 @@
     <Page Update="UI\MainUI.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\MoreMenuUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\SearchFriendPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\ChattingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\PopWindow.xaml">

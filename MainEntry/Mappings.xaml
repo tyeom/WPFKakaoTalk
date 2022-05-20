@@ -53,4 +53,9 @@
     <DataTemplate DataType="{x:Type dataContext:ChattingListViewModel}">
         <views:ChattingListUI />
     </DataTemplate>
+
+    <!--더보기 뷰-->
+    <DataTemplate DataType="{x:Type dataContext:MoreMenuViewModel}">
+        <views:MoreMenuUI />
+    </DataTemplate>
 </ResourceDictionary>

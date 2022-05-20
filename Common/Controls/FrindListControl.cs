@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 namespace Common.Controls;
 
 [TemplatePart(Name = MyProfilePartName, Type = typeof(Button))]
-public class FrindListControl : ItemsControl
+public class FrindListControl : ListBox
 {
     private const string MyProfilePartName = "PART_MyProfile";
 
@@ -111,7 +111,7 @@ public class FrindListControl : ItemsControl
 
 [TemplatePart(Name = ProfilePartName, Type = typeof(Button))]
 [TemplatePart(Name = FriendInfoPartName, Type = typeof(Grid))]
-public class FrindListItemControl : ContentControl
+public class FrindListItemControl : Control
 {
     private const string ProfilePartName = "PART_Profile";
     private const string FriendInfoPartName = "PART_FriendInfo";
