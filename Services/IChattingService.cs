@@ -153,6 +153,9 @@ public class ChattingService : IChattingService
 
     public async IAsyncEnumerable<Chatting> ChattingDataStreamAsync(Guid chatRoomId)
     {
+        // TODO-Server : id 이용
+        // TODO-Server : 서버에 실시간 채팅 대화 데이터 스트림 수신 처리
+
         while (_chattingDataStreamCancel.IsCancellationRequested == false)
         {
             await _sem.WaitAsync();
@@ -217,6 +220,9 @@ public class ChattingService : IChattingService
 
     public async Task<IList<Chatting>?> RequestToGetPreviousDataByCountAsync(Guid chatRoomId, Guid chatDataId, int count)
     {
+        // TODO-Server : 채팅방 id, 이전 채팅 데이터 요청 기준 데이터 id 이용
+        // TODO-Server : 서버에 이전 채팅 데이터 요청
+
         User friendUser = new User()
         {
             Id = Guid.NewGuid(),
