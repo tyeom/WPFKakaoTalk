@@ -36,38 +36,6 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
   - Microsoft.Extensions.DependencyInjection / ver : 6.0.0
 
 
-솔루션 구조
--
-
-Model / View / ViewModel 모두 물리적 분리 목표
-
-
-View -> Common 의존 참조 (외부에서 ViewModel 주입)<br/>
-ViewModel -> Common, Model, Service 의존 참조<br/>
-Service -> View 의존 참조 (popup window IoC 관리) <br/>
-Model 의존 참조 없음 (단독 모듈)
-
-구현 기능
--
-
-- 로그인 화면
-- 로그인 잠금 화면
-- 로그인 환경설정 [팝업]
-- 메인 환경설정 [팝업]
-- 프로필 정보 보기 화면 [팝업]
-- 친구 리스트 화면
-- 친구 검색 및 추가
-- 채팅방 리스트 화면
-- 채팅 화면
-- 실제 채팅 기능 [서버와 통신 X]
-- 채팅 화면에서 Infinite scroll 구현
-
-앞으로 구현 기능
--
-
-- 채팅 목록 캡쳐 해서 내보내기 기능
-- 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
-
 ***
 
 > KakaoTalk?
@@ -101,6 +69,40 @@ library to use
   - Microsoft.Extensions.DependencyInjection/ver: 6.0.0
 
 ***
+
+
+솔루션 구조
+-
+
+Model / View / ViewModel 모두 물리적 분리 목표
+
+
+View -> Common 의존 참조 (외부에서 ViewModel 주입)<br/>
+ViewModel -> Common, Model, Service 의존 참조<br/>
+Service -> View 의존 참조 (popup window IoC 관리) <br/>
+Model 의존 참조 없음 (단독 모듈)
+
+구현 기능
+-
+
+- [x] 로그인 화면
+- [x] 로그인 잠금 화면
+- [x] 로그인 환경설정 [팝업]
+- [x] 메인 환경설정 [팝업]
+- [x] 프로필 정보 보기 화면 [팝업]
+- [x] 친구 리스트 화면
+- [x] 친구 검색 및 추가
+- [x] 채팅방 리스트 화면
+- [x] 채팅 화면
+- [x] 실제 채팅 기능 [서버와 통신 X]
+- [x] 채팅 화면에서 Infinite scroll 구현
+
+앞으로 구현 기능
+-
+
+- [ ] 채팅 목록 캡쳐 해서 내보내기 기능
+- [ ] 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
+
 
 캡쳐 화면
 -
