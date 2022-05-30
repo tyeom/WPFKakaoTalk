@@ -30,15 +30,16 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 | --- | --- | --- | 
 | **WPFKakaoTalk**<br />main application project | ![NET6](https://img.shields.io/badge/.NET-6.0-red)<br/>(Windows Only) | None
 
+
 📕 library to use
 -
 
 | Name | Version |
 | --- | --- |
-| **Log**<br/>LogHelper | ![NETFramework45](https://img.shields.io/badge/.NET%20Framework-4.5-orange)<br/>self-production
-| **MVVM**<br/>Microsoft.Toolkit.Mvvm | 7.1.2 |
-| **MVVM**<br/>Microsoft.Xaml.Behaviors |  |
-| **DependencyInjection**<br />Microsoft.Extensions.DependencyInjection | 6.0.0 |
+| **LogHelper**<br/>Log | ![NETFramework45](https://img.shields.io/badge/.NET%20Framework-4.5-orange)<br/>self-production
+| **Microsoft.Toolkit.Mvvm**<br/>MVVM | 7.1.2 |
+| **Microsoft.Xaml.Behaviors**<br/>MVVM |  |
+| **Microsoft.Extensions.DependencyInjection**<br />DependencyInjection | 6.0.0 |
 
 
 ***
