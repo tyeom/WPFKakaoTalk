@@ -17,23 +17,28 @@ WPF로 KakaoTalk PC버전 클론 프로젝트 입니다. <br/>
 - Command처리 및 다양한 바인딩 처리 방식에 대해 익힐 수 있습니다.
 - 간단한 커스텀 컨트롤 샘플 예제가 있어 직접 활용할 수 있습니다.
 
-개발 환경 정보
+🛠️ 개발 환경 정보
 -
 
 - IDE : VS 2022
 - Language : C# (WPF)
-- Framework : .Net6 / Windows Only
 
-사용 라이브러리
+📁 What's included?
 -
 
-- 로그 관련
-  - LogHelper / 자체 제작
-- MVVM 관련
-  - Microsoft.Toolkit.Mvvm / ver : 7.1.2
-  - Microsoft.Xaml.Behaviors
-- DependencyInjection 관련
-  - Microsoft.Extensions.DependencyInjection / ver : 6.0.0
+| Name| Framework | Build Status |
+| --- | --- | --- | 
+| **WPFKakaoTalk**<br />main application project | ![NET6](https://img.shields.io/badge/.NET-6.0-red)<br/>(Windows Only) | None
+
+📕 library to use
+-
+
+| Name | Version |
+| --- | --- |
+| **Log**<br/>LogHelper | ![NETFramework45](https://img.shields.io/badge/.NET%20Framework-4.5-orange)<br/>self-production
+| **MVVM**<br/>Microsoft.Toolkit.Mvvm | 7.1.2 |
+| **MVVM**<br/>Microsoft.Xaml.Behaviors |  |
+| **DependencyInjection**<br />Microsoft.Extensions.DependencyInjection | 6.0.0 |
 
 
 ***
@@ -55,23 +60,11 @@ Environment
 
 - IDE : VS 2022
 - Language : C# (WPF)
-- Framework : .Net6 / Windows Only
-
-library to use
--
-
-- Log
-  - LogHelper / self-made
-- MVVM related
-  - Microsoft.Toolkit.Mvvm/ver: 7.1.2
-  - Microsoft.Xaml.Behaviors
-- DependencyInjection related
-  - Microsoft.Extensions.DependencyInjection/ver: 6.0.0
 
 ***
 
 
-솔루션 구조
+💡 솔루션 구조
 -
 
 Model / View / ViewModel 모두 물리적 분리 목표
@@ -82,7 +75,7 @@ ViewModel -> Common, Model, Service 의존 참조<br/>
 Service -> View 의존 참조 (popup window IoC 관리) <br/>
 Model 의존 참조 없음 (단독 모듈)
 
-구현 기능
+✅ 구현 기능
 -
 
 - [x] 로그인 화면
@@ -97,14 +90,14 @@ Model 의존 참조 없음 (단독 모듈)
 - [x] 실제 채팅 기능 [서버와 통신 X]
 - [x] 채팅 화면에서 Infinite scroll 구현
 
-앞으로 구현 기능
+☑️ 앞으로 구현 기능
 -
 
 - [ ] 채팅 목록 캡쳐 해서 내보내기 기능
 - [ ] 채팅방 드래그 앤 드롭 으로 프로그램 외부에 플로팅 띄우기
 
 
-캡쳐 화면
+📷 Screenshots
 -
 
 #### `로그인`
