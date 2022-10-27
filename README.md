@@ -90,6 +90,7 @@ Model 의존 참조 없음 (단독 모듈)
 - [x] 채팅 화면
 - [x] 실제 채팅 기능 [서버와 통신 X]
 - [x] 채팅 화면에서 Infinite scroll 구현
+- [x] 채팅 대화 말풍선 마우스 드래그로 선택 구현 [Adorner(**마우스 드래그 사각형 영역 표시**), ItemsControlSelector(**ListBox Item 매뉴얼하게 선택**) 구현 / SelectedItems Behavior 구현 ]
 
 ☑️ 앞으로 구현 기능
 -
