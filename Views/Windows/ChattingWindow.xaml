@@ -214,7 +214,8 @@
 
         <!--일반 메세지 타입 말풍선 Style-->
         <DataTemplate x:Key="NormalMsgType">
-            <controls:ChattingMessageControl FriendInfoCommand="{Binding ElementName=xChattingWindow, Path=DataContext.ProfileCommand}"/>
+            <controls:ChattingMessageControl FriendInfoCommand="{Binding ElementName=xChattingWindow, Path=DataContext.ProfileCommand}"
+                                             IsSelection="{Binding IsSelected, Mode=TwoWay}"/>
         </DataTemplate>
         <!--일반 메세지 타입 말풍선 Style End-->
 

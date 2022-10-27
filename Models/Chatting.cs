@@ -47,6 +47,7 @@ public class Chatting : ObservableObject
     private bool _showName;
     private bool _showMineDateTime;
     private bool _showOpponentDateTime;
+    private bool _isSelected;
     public User _user;
 
     public Guid Id { get; set; }
@@ -87,6 +88,12 @@ public class Chatting : ObservableObject
     {
         get => _showOpponentDateTime;
         set => SetProperty(ref _showOpponentDateTime, value);
+    }
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetProperty(ref _isSelected, value);
     }
 
     public DateTime MessageDateTime { get; set; }
