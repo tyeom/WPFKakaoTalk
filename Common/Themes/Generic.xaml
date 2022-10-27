@@ -23,6 +23,7 @@
                             <ContentControl Content="{TemplateBinding Content}" />
                         </Grid>
                     </Border>
+                    
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="img" Property="Source">
@@ -543,118 +544,154 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ct:ChattingMessageControl}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                    <!--채팅 말풍선 영역 Grid를 전체 감싸는 Grid-->
+                    <Grid x:Name="xContentGrid" HorizontalAlignment="Left">
+                        <!--채팅 말풍선 영역 Grid-->
+                        <Grid x:Name="xChattingMessageGrid"
+                              HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <!--프로필 사진 표시-->
-                        <Button x:Name="PART_Profile"
-                                Grid.Column="0"
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                VerticalAlignment="Top"
-                                Cursor="Hand"
-                                Margin="0,0,0,0">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="OverridesDefaultStyle" Value="True" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Name="border" Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ShowProfileImg}" Value="False">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            <Border>
-                                <Rectangle Width="40"
-                                           Height="42"
-                                           StrokeThickness="0"
-                                           RadiusX="35"
-                                           RadiusY="40"
-                                           Margin="0,0,0,0">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="{Binding User.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}"
-                                                    Stretch="Fill" />
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                            </Border>
-                        </Button>
-                        <!--프로필 사진 표시 END-->
-
-                        <TextBlock Grid.Column="0"
-                                   Grid.Row="1"
-                                   Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
-                                   Visibility="{Binding ShowMineDateTime, Converter={StaticResource BoolToVisConverter}}"
-                                   FontSize="12"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
-                                   Margin="0, 0, -5, 0"/>
-
-                        <TextBlock Grid.Column="1"
-                                   Grid.Row="0"
-                                   Visibility="{Binding ShowName, Converter={StaticResource BoolToVisConverter}}"
-                                   Text="{Binding User.Name}"
-                                   FontSize="12"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Margin="10, 0, 0, 10"/>
-
-                        <Border Grid.Column="1"
-                                Grid.Row="1"
-                                Background="#FFFFFFFF"
-                                CornerRadius="2"
-                                MinWidth="33"
-                                MinHeight="33"
-                                Padding="10, 0, 10, 0"
-                                Margin="10, 0, 0, 0">
-                            <TextBox Text="{Binding Message}"
-                                     FontSize="12"
-                                     VerticalAlignment="Center"
-                                     IsReadOnly="True"
-                                     Margin="0, 0, 0, 0">
-                                <TextBox.Style>
-                                    <Style TargetType="{x:Type TextBox}">
+                            <!--프로필 사진 표시-->
+                            <Button x:Name="PART_Profile"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    VerticalAlignment="Top"
+                                    Cursor="Hand"
+                                    Margin="0,0,0,0">
+                                <Button.Style>
+                                    <Style TargetType="Button">
                                         <Setter Property="OverridesDefaultStyle" Value="True" />
                                         <Setter Property="Template">
                                             <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                                                    <Border BorderBrush="#FFA5A3A3" BorderThickness="0">
-                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Name="border"
+                                                            Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center" />
                                                     </Border>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowProfileImg}" Value="False">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
                                     </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                        </Border>
+                                </Button.Style>
+                                <Border>
+                                    <Rectangle Width="40"
+                                               Height="42"
+                                               StrokeThickness="0"
+                                               RadiusX="35"
+                                               RadiusY="40"
+                                               Margin="0,0,0,0">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding User.UserProfile.UserProfileImgBase64, Converter={StaticResource Base64ToBitmapImageConverter}}"
+                                                        Stretch="Fill" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Border>
+                            </Button>
+                            <!--프로필 사진 표시 END-->
 
-                        <TextBlock Grid.Column="2"
-                                   Grid.Row="1"
-                                   Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
-                                   Visibility="{Binding ShowOpponentDateTime, Converter={StaticResource BoolToVisConverter}}"
-                                   FontSize="12"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Bottom"
-                                   Margin="5, 0, 0, 0"/>
+                            <TextBlock Grid.Column="0"
+                                       Grid.Row="1"
+                                       Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
+                                       Visibility="{Binding ShowMineDateTime, Converter={StaticResource BoolToVisConverter}}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0, 0, -5, 0"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Grid.Row="0"
+                                       Visibility="{Binding ShowName, Converter={StaticResource BoolToVisConverter}}"
+                                       Text="{Binding User.Name}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="10, 0, 0, 10"/>
+
+                            <Border Grid.Column="1"
+                                    Grid.Row="1"
+                                    Background="#FFFFFFFF"
+                                    CornerRadius="2"
+                                    MinWidth="33"
+                                    MinHeight="33"
+                                    Padding="10, 0, 10, 0"
+                                    Margin="10, 0, 0, 0">
+                                <TextBox Text="{Binding Message}"
+                                         FontSize="12"
+                                         VerticalAlignment="Center"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"
+                                         Margin="0, 0, 0, 0">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                                                        <Border BorderBrush="#FFA5A3A3" BorderThickness="0">
+                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Border>
+
+                            <TextBlock Grid.Column="2"
+                                       Grid.Row="1"
+                                       Text="{Binding MessageDateTime, StringFormat=tt H:mm, ConverterCulture='ko-KR'}"
+                                       Visibility="{Binding ShowOpponentDateTime, Converter={StaticResource BoolToVisConverter}}"
+                                       FontSize="12"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Bottom"
+                                       Margin="5, 0, 0, 0"/>
+
+                            <Border x:Name="xSelectionBackBorder"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Opacity="0.8">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Margin"
+                                                Value="50, 10, 0, 0"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowMineDateTime}"
+                                                         Value="True">
+                                                <Setter Property="Margin"
+                                                        Value="0, 10, 0, 0"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </Grid>
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelection" Value="True">
+                            <Setter TargetName="xSelectionBackBorder"
+                                    Property="Background"
+                                    Value="{Binding SelectionBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

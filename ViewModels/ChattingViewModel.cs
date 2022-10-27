@@ -32,6 +32,7 @@ public class ChattingViewModel : ViewModelBase
     private string _chatMessage;
 
     private ObservableCollection<Chatting> _chattingMessageList;
+    private ObservableCollection<Chatting> _selectedChattingMessageList = new ObservableCollection<Chatting>();
     private Chatting _selectedChattingMessageItem;
     private Guid? _requestPreviousDataGuid;
 
@@ -81,6 +82,13 @@ public class ChattingViewModel : ViewModelBase
         get => _chattingMessageList;
         set => SetProperty(ref _chattingMessageList, value);
     }
+
+    public ObservableCollection<Chatting> SelectedChattingMessageList
+    {
+        get => _selectedChattingMessageList;
+        set => SetProperty(ref _selectedChattingMessageList, value);
+    }
+
 
     public Chatting SelectedChattingMessageItem
     {

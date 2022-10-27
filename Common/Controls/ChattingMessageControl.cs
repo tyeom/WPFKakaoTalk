@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Common.Controls;
@@ -29,6 +30,36 @@ public class ChattingMessageControl : Control
     {
         get { return base.GetValue(ChatContentProperty) as object; }
         set { base.SetValue(ChatContentProperty, value); }
+    }
+
+    public static readonly DependencyProperty? SelectionBackgroundProperty =
+        DependencyProperty.Register(
+            "SelectionBackground",
+            typeof(Brush),
+            typeof(ChattingMessageControl),
+            new PropertyMetadata((SolidColorBrush)(new BrushConverter().ConvertFrom("#FF606264"))!));  // Default Color #FF606264(그레이)
+    /// <summary>
+    /// 선택영역 배경
+    /// </summary>
+    public Brush SelectionBackground
+    {
+        get { return (Brush)this.GetValue(SelectionBackgroundProperty); }
+        set { this.SetValue(SelectionBackgroundProperty, value); }
+    }
+
+    public static readonly DependencyProperty? IsSelectionProperty =
+        DependencyProperty.Register(
+            "IsSelection",
+            typeof(Boolean),
+            typeof(ChattingMessageControl),
+            new PropertyMetadata(false));
+    /// <summary>
+    /// 선택 여부
+    /// </summary>
+    public bool IsSelection
+    {
+        get { return (bool)this.GetValue(IsSelectionProperty); }
+        set { this.SetValue(IsSelectionProperty, value); }
     }
 
     public static readonly DependencyProperty FriendInfoCommandProperty =

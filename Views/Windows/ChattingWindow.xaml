@@ -9,6 +9,7 @@
         xmlns:bi="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:Common.Controls;assembly=Common"
         xmlns:templateSelector="clr-namespace:Views.TemplateSelector"
+        xmlns:extension="clr-namespace:Common.MarkupExtension;assembly=Common"
         mc:Ignorable="d"
         MinWidth="350"
         MinHeight="600"
@@ -124,11 +125,25 @@
         </Style>
 
         <Style x:Key="MessageStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <ContentPresenter x:Name="PART_ListBoxItem" HorizontalAlignment="Left"/>
+                        <Grid x:Name="xContentGrid">
+                            <ContentPresenter x:Name="PART_ListBoxItem"
+                                              HorizontalAlignment="Left"/>
+                            <Border x:Name="xSelectionBackBorder"
+                                    HorizontalAlignment="Left"
+                                    Opacity="0.8"
+                                    Width="{Binding ElementName=PART_ListBoxItem, Path=ActualWidth}"/>
+                        </Grid>
                         <ControlTemplate.Triggers>
+                            <!--<Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="xSelectionBackBorder"
+                                        Property="Background"
+                                        Value="#FF606264"/>
+                            </Trigger>-->
+                            
                             <!--상대방 시작 대화(프로필, 이름 표시) 말풍선 Margin 설정-->
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
@@ -216,8 +231,11 @@
                 <TextBlock x:Name="tbk_created_at" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding created_at}" TextWrapping="Wrap" TextTrimming="WordEllipsis" Grid.Row="0" />
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="2"
                                   Width="Auto" MinWidth="10">
-                    <Image x:Name="img_msg" Width="200" Height="200" Cursor="Hand"
-                   Source="{Binding ImageMessageUri}" />
+                    <Image x:Name="img_msg"
+                           Width="200"
+                           Height="200"
+                           Cursor="Hand"
+                           Source="{Binding ImageMessageUri}" />
                 </Grid>
 
             </Grid>
@@ -343,7 +361,13 @@
                                                  RequestGetDataCommand="{Binding RequestGetDataCommand}"
                                                  Background="Transparent"
                                                  ItemContainerStyle="{StaticResource MessageStyle}"
+                                                 SelectionMode="Multiple"
+                                                 extension:ChatMessageBoxSelector.Enabled="True"
+                                                 extension:ChatMessageBoxSelector.IsSelectionRectVisible="False"
                                                  BorderThickness="0,0,0,0">
+                <bi:Interaction.Behaviors>
+                    <behaviors:ListBoxSelectionBehavior SelectedItems="{Binding SelectedChattingMessageList, Mode=TwoWay}"/>
+                </bi:Interaction.Behaviors>
                 <bi:Interaction.Triggers>
                     <bi:EventTrigger EventName="Loaded">
                         <bi:InvokeCommandAction Command="{Binding LoadedCommand}" />
